@@ -9,7 +9,8 @@ import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 import Error from './pages/Error.jsx'
 import Finder from './pages/Finder.jsx'
-import Reviews from './pages/Reviews.jsx'
+import Dashboard from './pages/Dashboard.jsx'
+import Profile from './pages/Profile.jsx'
 import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
 
@@ -37,8 +38,12 @@ const router = createBrowserRouter([
         element: <Finder />,
       },
       {
-        path: '/reviews',
-        element: <Reviews />,
+        path: '/dashboard',
+        element: <Dashboard />,
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
       },
       {
         path: '/login',
