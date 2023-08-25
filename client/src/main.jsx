@@ -9,11 +9,19 @@ import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 import Error from './pages/Error.jsx'
 import Finder from './pages/Finder.jsx'
-import Dashboard from './pages/Dashboard.jsx'
-import Profile from './pages/Profile.jsx'
 import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
 
+import Dashboard from './pages/Dashboard.jsx'
+
+import Profile from './pages/DashPages/Profile.jsx'
+import ReviewPage from './pages/DashPages/ReviewPage.jsx'
+import StatusPage from './pages/DashPages/StatusPage.jsx'
+import MakeReviewPage from './pages/DashPages/MakeReviewPage.jsx'
+import MakeStatusPage from './pages/DashPages/MakeStatusPage.jsx'
+import AllPostsPage from './pages/DashPages/AllPostsPage.jsx'
+import AchievementsPage from './pages/DashPages/AchievementsPage.jsx'
+import AllUsers from './pages/DashPages/AllUsers.jsx'
 
 const router = createBrowserRouter([
   {
@@ -40,10 +48,40 @@ const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <Dashboard />,
-      },
-      {
-        path: '/profile',
-        element: <Profile />,
+        children: [
+          {
+            path: '/dashboard/profile',
+            element: <Profile />,
+          },
+          {
+            path: '/dashboard/review',
+            element: <ReviewPage />,
+          },
+          {
+            path: '/dashboard/status',
+            element: <StatusPage />,
+          },
+          {
+            path: '/dashboard/make-review',
+            element: <MakeReviewPage />,
+          },
+          {
+            path: '/dashboard/make-status',
+            element: <MakeStatusPage />,
+          },
+          {
+            path: '/dashboard/all-posts',
+            element: <AllPostsPage />,
+          },
+          {
+            path: '/dashboard/achievements',
+            element: <AchievementsPage />,
+          },
+          {
+            path: '/dashboard/all-users',
+            element: <AllUsers />,
+          },
+        ],
       },
       {
         path: '/login',
