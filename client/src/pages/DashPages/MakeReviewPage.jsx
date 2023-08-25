@@ -1,8 +1,11 @@
 import React from 'react'
+import MakeReview from '../../components/MakeReview'
 
 function MakeReviewPage() {
   return (
-    <div>MakeReviewPage</div>
+    <div>MakeReviewPage
+        <MakeReview />
+    </div>
   )
 }
 
