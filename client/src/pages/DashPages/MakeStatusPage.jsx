@@ -1,8 +1,11 @@
 import React from 'react'
+import MakeStatus from '../../components/MakeStatus'
 
 function MakeStatusPage() {
   return (
-    <div>MakeStatusPage</div>
+    <div>MakeStatusPage
+        <MakeStatus />
+    </div>
   )
 }
 
