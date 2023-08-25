@@ -5,7 +5,7 @@ const { Users, Review } = require("../models");
 const resolvers = {
     Query: {
         users: async () => {
-            return await Users.find({}).populate('statuses').populate('reviews');
+            return await Users.find({});
         },
 
         statuses: async () => {
