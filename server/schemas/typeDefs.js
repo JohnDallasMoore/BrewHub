@@ -1,24 +1,45 @@
 const typeDefs = `
 type User {
     _id: ID!
-    name: String!
+    firstName: String!
+    lastName: String!
     password: String!
     email: String! 
-    badges: Int 
     statuses: [Status]
     reviews: [Review]
 }
 
-
-type Query {
-
+type Review {
+    _id: ID! 
+    title: String! 
+    content: String! 
+    rating: Int! 
+    image: String! 
+    likes: Int! 
+    comments: [Comment]
 
 }
 
-type Mutation {
+type Status {
+    _id: ID! 
+    title: String! 
+    content: String! 
+    image: String!
+    likes: Int! 
+    comments: [Comment]
+}
 
+type Comment {
+    _id: ID! 
+    date: Int!
+    content: String!
+}
 
-
+type Query {
+    users: [User]
+    statuses: [Status]
+    reviews: [Review]
+    comments: [Comment]
 }
 `;
 
