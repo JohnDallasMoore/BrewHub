@@ -16,7 +16,7 @@ function About() {
                   <img className="object-cover mt-4 h-96 aspect-auto w-full lg:mt-10 rounded-lg mx-8" src="/Beer-Can.jpg" alt="Beer Can" />
               </div>
           </div>
-        {/* <Testimonials /> */}
+        <Testimonials />
       </section>
 
     </div>
