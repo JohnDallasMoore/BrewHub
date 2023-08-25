@@ -1,8 +1,12 @@
 import React from 'react'
+import SideBar from '../components/SideBar.jsx'
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div>
+      <SideBar />
+      Dashboard
+      </div>
   )
 }
 
