@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 // const sequelize = require("../config/connection");
 
 
-const usersSchema = new Schema({
+const userSchema = new Schema({
     firstName: {
       type: String,
       required: true,
@@ -29,6 +29,6 @@ const usersSchema = new Schema({
   });
   
 
-const Users= model('Users', usersSchema);
+const User= model('Users', userSchema);
 
-module.exports = Users;
+module.exports = User;
