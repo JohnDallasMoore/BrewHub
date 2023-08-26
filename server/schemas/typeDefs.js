@@ -38,6 +38,7 @@ type Query {
     statuses: [Status]
     reviews: [Review]
     comments: [Comment]
+    getUserById(id: String!): User
 }
 
 type Mutation {
