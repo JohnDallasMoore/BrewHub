@@ -8,6 +8,10 @@ const resolvers = {
             return await User.find({});
         },
 
+        getUserById: async (_, {id}) => {
+            return await User.findById(id);
+        },
+
         statuses: async () => {
             return await Status.find({});
         },
