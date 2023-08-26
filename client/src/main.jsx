@@ -14,6 +14,7 @@ import Signup from './pages/Signup.jsx'
 
 import Dashboard from './pages/Dashboard.jsx'
 
+import DashLanding from './pages/DashPages/DashLanding.jsx'
 import Profile from './pages/DashPages/Profile.jsx'
 import ReviewPage from './pages/DashPages/ReviewPage.jsx'
 import StatusPage from './pages/DashPages/StatusPage.jsx'
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: <Dashboard />,
         children: [
+          {
+            index: true,
+            element: <DashLanding />,
+          },
           {
             path: '/dashboard/profile',
             element: <Profile />,
