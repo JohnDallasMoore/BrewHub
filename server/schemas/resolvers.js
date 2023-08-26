@@ -30,6 +30,10 @@ const resolvers = {
 
         comments: async () => {
             return await Comment.find({});
+        },
+
+        getCommentById: async(_, {id}) => {
+            return await Comment.findById(id);
         }
     },
 
