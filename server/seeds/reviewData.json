@@ -1,0 +1,23 @@
+[
+    {
+        "title": "Busch Lite",
+        "content": "It was pretty good, I guess.",
+        "rating": 2,
+        "image": "www.google.com",
+        "likes": 2
+    },
+    {
+        "title": "Budweiser",
+        "content": "Is this showing my lack of beer knowledge, yet?",
+        "rating": 5,
+        "image": "www.google.com",
+        "likes": 10
+    },
+    {
+        "title": "Whiteclaw",
+        "content": "These were amazing!",
+        "rating": 2,
+        "image": "www.google.com",
+        "likes": 26
+    }
+]

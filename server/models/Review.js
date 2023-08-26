@@ -2,23 +2,30 @@ const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const reviewSchema = new Schema({
-  reviewText: {
+  title: {
     type: String,
-    required: 'Leave a review!',
     minlength: 1,
     maxlength: 280,
-    trim: true,
-  },
-  reviewAuthor: {
-    type: String,
     required: true,
     trim: true,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    get: (timestamp) => dateFormat(timestamp),
+  content: {
+    type: String,
+    minlength: 1,
+    maxlength: 280,
+    required: true,
+    trim: true,
   },
+  rating:{
+    type: Number,
+    trim: true,
+  },
+  image: {
+    type: String,
+  },
+  likes: {
+    type: Number,
+  }
 });
 
 //rating and place image
