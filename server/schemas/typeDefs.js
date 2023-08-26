@@ -50,13 +50,31 @@ type Mutation {
         image: String!,
         likes: Int!): Status
 
-    addReview(title: String! 
-        content: String! 
-        rating: Int! 
-        image: String! 
+    addReview(title: String!,
+        content: String!,
+        rating: Int!, 
+        image: String!,
         likes: Int!): Review
 
     addComment(content: String!): Comment
+
+    updateUser(
+        id: ID!,
+        firstName: String!,
+        lastName: String!,
+        password: String!,
+        email: String!): User
+
+    updateReview(
+        id: ID!,
+        tittle: String!,
+        content: String!,): Review
+
+    updateComment(
+        id: ID!,
+        content: String!,): Comment
+
+
 }
 
 `;
