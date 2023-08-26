@@ -16,6 +16,10 @@ const resolvers = {
             return await Status.find({});
         },
 
+        getStatusById: async (_, {id}) => {
+            return await Status.findById(id);
+        },
+
         reviews: async () => {
             return await Review.find({});
         },
