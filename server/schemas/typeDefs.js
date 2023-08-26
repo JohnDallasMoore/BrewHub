@@ -22,7 +22,6 @@ type Review {
 
 type Status {
     _id: ID! 
-    title: String! 
     content: String! 
     image: String!
     likes: Int! 
@@ -31,7 +30,6 @@ type Status {
 
 type Comment {
     _id: ID! 
-    date: Int!
     content: String!
 }
 
@@ -41,6 +39,26 @@ type Query {
     reviews: [Review]
     comments: [Comment]
 }
+
+type Mutation {
+    addUser(firstName: String!,
+        lastName: String!,
+        password: String!,
+        email: String!): User
+
+    addStatus(content: String!, 
+        image: String!,
+        likes: Int!): Status
+
+    addReview(title: String! 
+        content: String! 
+        rating: Int! 
+        image: String! 
+        likes: Int!): Review
+
+    addComment(content: String!): Comment
+}
+
 `;
 
 module.exports = typeDefs; 
