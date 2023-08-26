@@ -24,6 +24,10 @@ const resolvers = {
             return await Review.find({});
         },
 
+        getReviewById: async (_, {id}) => {
+            return await Review.findById(id);
+        },
+
         comments: async () => {
             return await Comment.find({});
         }

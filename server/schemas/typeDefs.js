@@ -40,6 +40,7 @@ type Query {
     comments: [Comment]
     getUserById(id: String!): User
     getStatusById(id: String!): Status
+    getReviewById(id: String!): Review 
 }
 
 type Mutation {
