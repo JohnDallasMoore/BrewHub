@@ -1,22 +1,12 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const reviewSchema = new Schema({
-  title: {
-    type: String,
-    minlength: 1,
-    maxlength: 280,
-    trim: true,
-  },
+const statusSchema = new Schema({
   content: {
     type: String,
     minlength: 1,
     maxlength: 280,
     required: true,
-    trim: true,
-  },
-  rating:{
-    type: Number,
     trim: true,
   },
   image: {
@@ -29,6 +19,6 @@ const reviewSchema = new Schema({
 
 //rating and place image
 
-const Review = model('Review', reviewSchema);
+const Status = model('Status', statusSchema);
 
-module.exports = Review;
+module.exports = Status;
