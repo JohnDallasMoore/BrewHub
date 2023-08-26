@@ -16,12 +16,24 @@ const resolvers = {
             return await Status.find({});
         },
 
+        getStatusById: async (_, {id}) => {
+            return await Status.findById(id);
+        },
+
         reviews: async () => {
             return await Review.find({});
         },
 
+        getReviewById: async (_, {id}) => {
+            return await Review.findById(id);
+        },
+
         comments: async () => {
             return await Comment.find({});
+        },
+
+        getCommentById: async(_, {id}) => {
+            return await Comment.findById(id);
         }
     },
 

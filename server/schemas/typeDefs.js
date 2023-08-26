@@ -39,6 +39,9 @@ type Query {
     reviews: [Review]
     comments: [Comment]
     getUserById(id: String!): User
+    getStatusById(id: String!): Status
+    getReviewById(id: String!): Review 
+    getCommentById(id: String!): Comment
 }
 
 type Mutation {
