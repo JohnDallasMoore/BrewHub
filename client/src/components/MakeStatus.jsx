@@ -51,12 +51,10 @@ function MakeStatus() {
     <div>
       <section className="bg-gray-900 px-4 lg:px-96 py-8 lg:py-16 rounded-lg">
         <div>
-          <h2 className="mb-4 text-center text-4xl tracking-tight font-extrabold text-white">Update Your Status</h2>
+          
           <form onSubmit={handleSubmit} id="new-status-form">
             <div className="mb-6">
-              <label htmlFor="status-content-input" className="block mb-2 text-sm font-medium text-white">
-                Status:
-              </label>
+              
               <textarea
                 id="status-content-input"
                 rows="2"
