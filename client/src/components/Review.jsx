@@ -15,7 +15,7 @@ function Review() {
                               </div>
                           </div>
                           <div>
-                            <a href="#" class="text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md bg-gray-700 text-blue-400 mb-2">Review</a>
+                            <a href="#" class="text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md bg-gray-900 text-blue-400 mb-2">Review</a>
                           </div>
                       </address>
                       <h1 className="mb-4 text-3xl font-extrabold leading-tight lg:mb-6 lg:text-2xl text-white"><a href="/posts/{{post.id}}">Social Project - Western Sun IPA</a></h1>
