@@ -7,7 +7,7 @@ function NavBar() {
     
     <nav className="border-gray-200 bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" className="flex items-center">
+        <a href="/" className="flex items-center ml-4">
             <img src="/BrewHubLogo.svg" className="h-8 mr-3" alt="BrewHub Logo" />
             <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">BrewHub</span>
         </a>
