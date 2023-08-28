@@ -1,14 +1,14 @@
 import React from 'react'
 
-function Review() {
+function LargeReview() {
   return (
     <div>
-      <main className="pt-4 pb-8 lg:pt-8 lg:pb-12 max-w-lg">
+      <main className="pt-4 pb-8 lg:pt-8 lg:pb-12">
           <div className="flex justify-between px-4 mx-auto max-w-screen-xl ">
               <article className="border-4 rounded-lg p-8 border-gray-900 bg-gray-800 mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
                   <header className="mb-4 lg:mb-6 not-format">
-                      <address className="flex items-center justify-between mb-6 not-italic">
-                          <div className="inline-flex items-center mr-3 text-sm text-white">
+                        <address className="flex items-center justify-between mb-6 not-italic">
+                          <div className="inline-flex mr-3 text-sm text-white">
                               <div>
                                   <a href="#" rel="author" className="text-xl font-bold text-white">Dallas Moore</a>
                                   <p className="text-base text-sm font-light text-gray-400">August 26, 2023</p>
@@ -17,7 +17,7 @@ function Review() {
                           <div>
                             <a href="#" class="text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md bg-gray-700 text-blue-400 mb-2">Review</a>
                           </div>
-                      </address>
+                        </address>
                       <h1 className="mb-4 text-3xl font-extrabold leading-tight lg:mb-6 lg:text-2xl text-white"><a href="/posts/{{post.id}}">Social Project - Western Sun IPA</a></h1>
                   </header>
                   <p className="text-base font-light text-gray-400">Western Sun IPA from Social Project is a hop lover's paradise. With its robust blend of citrusy and resinous flavors, this IPA shines brightly, leaving a lingering satisfaction on the palate.</p>
@@ -46,4 +46,4 @@ function Review() {
   )
 }
 
-export default Review
+export default LargeReview

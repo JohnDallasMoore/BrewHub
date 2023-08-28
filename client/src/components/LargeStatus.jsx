@@ -1,14 +1,14 @@
 import React from 'react'
 
-function Status() {
+function LargeStatus() {
   return (
     <div>
-      <main className="pt-4 pb-8 lg:pt-8 lg:pb-12 max-w-lg">
+      <main className="pt-4 pb-8 lg:pt-8 lg:pb-12">
           <div className="flex justify-between px-4 mx-auto max-w-screen-xl ">
               <article className="border-4 rounded-lg p-8 border-gray-900 bg-gray-800 mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
                   <header className="mb-4 lg:mb-6 not-format">
                       <address className="flex items-center justify-between mb-6 not-italic">
-                          <div className="inline-flex items-center mr-3 text-sm text-white">
+                          <div className="inline-flex mr-3 text-sm text-white">
                               <div>
                                   <a href="#" rel="author" className="text-xl font-bold text-white">Dallas Moore</a>
                                   <p className="text-base text-sm font-light text-gray-400">August 26, 2023</p>
@@ -26,7 +26,6 @@ function Status() {
                   <p className="text-base font-light text-gray-400">Relaxing at Flight Deck Brewery, sippin' on brews and embracing the good times. Cheers to great beers, awesome vibes, and unforgettable memories!</p>
                   <br />
                   <div className="flex items-center">
-                      
                       <a href="#" className="text-sm font-medium underline hover:no-underline text-white">12 Likes</a>
                       <span className="w-1 h-1 mx-1.5 rounded-full bg-gray-400"></span>
                       <button id="comment-button" className="text-sm font-medium underline hover:no-underline text-white comment-buttons">Comments</button>
@@ -41,9 +40,7 @@ function Status() {
           </div>
       </main> 
     </div>
-
-
   )
 }
 
-export default Status
+export default LargeStatus
