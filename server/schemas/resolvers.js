@@ -56,7 +56,38 @@ const resolvers = {
         addComment: async(parent, {
             content}) => {
                 return await Comment.create({content});
-            }
+            },
+        updateUser: async (parent, { id,firstName, lastName, password, email}) => {
+             // Find and update the matching class using the destructured args
+            return await User.findOneAndUpdate(
+                { _id: id }, 
+                { firstName },
+                { lastName },
+                { password },
+                { email },
+                // Return the newly updated object instead of the original
+                { new: true }
+                );
+            }, 
+        updateReview: async (parent, { id, tittle, content}) => {
+             // Find and update the matching class using the destructured args
+            return await Review.findOneAndUpdate(
+                { _id: id },
+                { tittle }, 
+                { content}, 
+                // Return the newly updated object instead of the original
+                { new: true }
+                );
+            },  
+        updateComment: async (parent, {content}) => {
+             // Find and update the matching class using the destructured args
+            return await Comment.findOneAndUpdate(
+                { _id: id },
+                { content}, 
+                // Return the newly updated object instead of the original
+                { new: true }
+                );
+            },  
         },
     };
 
