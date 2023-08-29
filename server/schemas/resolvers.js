@@ -88,6 +88,10 @@ const resolvers = {
                 { new: true }
                 );
             },  
+        removeUser: async (parent, { UserId }) => {
+                return User.findOneAndDelete({ _id: UserId });
+            },
+        //TODO: REMOVE COMMENTS AND POST 
         },
     };
 
