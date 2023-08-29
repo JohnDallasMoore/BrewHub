@@ -2,7 +2,7 @@ import React from 'react'
 
 function Printables() {
   return (
-    <div>Printables</div>
+    <div>Cheers & Challenges Pack</div>
   )
 }
 
