@@ -1,6 +1,20 @@
 import React from 'react'
+import Comments from './Comments'
+import MakeComment from './MakeComment'
 
 function LargeReview() {
+  function commentButton(event) {
+    event.preventDefault();
+
+    if (event.target.parentElement.parentElement.children[6].classList.contains('hidden')) {
+        event.target.parentElement.parentElement.children[6].classList.remove('hidden');
+    }
+    else {
+        event.target.parentElement.parentElement.children[6].classList.add('hidden');
+    };
+
+  };
+
   return (
     <div>
       <main className="pt-4 pb-8 lg:pt-8 lg:pb-12">
@@ -8,7 +22,7 @@ function LargeReview() {
               <article className="border-4 rounded-lg p-8 border-gray-900 bg-gray-800 mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
                   <header className="mb-4 lg:mb-6 not-format">
                         <address className="flex items-center justify-between mb-6 not-italic">
-                          <div className="inline-flex mr-3 text-sm text-white">
+                          <div className="flex flex-col mr-3 text-sm text-white">
                               <div>
                                   <a href="#" rel="author" className="text-xl font-bold text-white">Dallas Moore</a>
                                   <p className="text-base text-sm font-light text-gray-400">August 26, 2023</p>
@@ -31,10 +45,11 @@ function LargeReview() {
                       <span className="w-1 h-1 mx-1.5 rounded-full bg-gray-400"></span>
                       <a href="#" className="text-sm font-medium underline hover:no-underline text-white">12 Likes</a>
                       <span className="w-1 h-1 mx-1.5 rounded-full bg-gray-400"></span>
-                      <button id="comment-button" className="text-sm font-medium underline hover:no-underline text-white comment-buttons">Comments</button>
+                      <button onClick={commentButton} id="comment-button" className="text-sm font-medium underline hover:no-underline text-white comment-buttons">Comments</button>
                   </div>
                   <div id="comment-input" className="hidden">
-                      {/* <Comment /> */}
+                      <MakeComment />
+                      <Comments />
                   </div>
                   <p id="post-id" className="text-gray-800 text-opacity-0">
                       {/* post id for finding if needed */}

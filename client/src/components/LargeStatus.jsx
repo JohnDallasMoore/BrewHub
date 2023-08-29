@@ -1,6 +1,20 @@
 import React from 'react'
+import Comments from './Comments'
+import MakeComment from './MakeComment'
 
 function LargeStatus() {
+  function commentButton(event) {
+    event.preventDefault();
+
+    if (event.target.parentElement.parentElement.children[6].classList.contains('hidden')) {
+        event.target.parentElement.parentElement.children[6].classList.remove('hidden');
+    }
+    else {
+        event.target.parentElement.parentElement.children[6].classList.add('hidden');
+    };
+
+  };
+
   return (
     <div>
       <main className="pt-4 pb-8 lg:pt-8 lg:pb-12">
@@ -28,10 +42,11 @@ function LargeStatus() {
                   <div className="flex items-center">
                       <a href="#" className="text-sm font-medium underline hover:no-underline text-white">12 Likes</a>
                       <span className="w-1 h-1 mx-1.5 rounded-full bg-gray-400"></span>
-                      <button id="comment-button" className="text-sm font-medium underline hover:no-underline text-white comment-buttons">Comments</button>
+                      <button onClick={commentButton} id="comment-button" className="text-sm font-medium underline hover:no-underline text-white comment-buttons">Comments</button>
                   </div>
                   <div id="comment-input" className="hidden">
-                      {/* <Comment /> */}
+                      <MakeComment />
+                      <Comments />
                   </div>
                   <p id="post-id" className="text-gray-800 text-opacity-0">
                       {/* post id for finding if needed */}
