@@ -2,6 +2,15 @@ import React from 'react'
 
 function Printables() {
   return (    
+      <div>
+        <section className="border-4 border-gray-900 my-2 lg:my-4 lg:mx-12  rounded-xl bg-gray-800">
+            <div className="flex flex-wrap justify-around ">
+            <div className="rounded-md  mx-4 my-8">
+                <h2 className="m-4 text-4xl text-center lg:text-6xl tracking-tight font-extrabold text-white">Brew Quests</h2>
+                <p className="mb-6 lg:mx-72 font-light md:text-lg text-center text-gray-400">Unlock a world of entertainment with our Printables collection. Access a diverse range of beer games, challenges, and activities to elevate your gatherings. Elevate your beer experiences with interactive fun!</p>
+            </div>
+            </div>
+        </section>
         <div id="default-carousel" class="relative w-full" data-carousel="slide">
             {/* <!-- Carousel wrapper --> */}
             <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
@@ -56,6 +65,8 @@ function Printables() {
                 </span>
             </button>
         </div>
+
+      </div>
   )
 }
 
