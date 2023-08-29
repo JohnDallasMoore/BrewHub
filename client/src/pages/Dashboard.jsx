@@ -106,7 +106,7 @@ function Dashboard() {
                     <path d="M5 20h10a1 1 0 0 0 1-1v-5H4v5a1 1 0 0 0 1 1Z"/>
                     <path d="M18 7H2a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2v-3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Zm-1-2V2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3h14Z"/>
                   </svg>
-                    <span className="ml-3">Printables</span>
+                    <span className="ml-3">Brew Quests</span>
                   </Link>
               </li>
             </ul>
