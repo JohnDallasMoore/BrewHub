@@ -4,13 +4,13 @@ import UserCard from '../../components/UserCard'
 function AllUsers() {
   return (
     <div>
-      <section class="bg-gray-700">
-        <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
-            <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-white">Brew Crew</h2>
-                <p class="font-light text-gray-400 sm:text-xl">Meet the BrewCrew: Explore user profiles, follow, and connect for a glimpse into diverse beer journeys and experiences.</p>
+      <section className="bg-gray-700">
+        <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
+            <div className="mx-auto mb-8 max-w-screen-sm lg:mb-16">
+                <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-white">Brew Crew</h2>
+                <p className="font-light text-gray-400 sm:text-xl">Meet the BrewCrew: Explore user profiles, follow, and connect for a glimpse into diverse beer journeys and experiences.</p>
             </div> 
-            <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div className="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <UserCard />
                 <UserCard />
                 <UserCard />
