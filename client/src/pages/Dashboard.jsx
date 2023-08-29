@@ -99,6 +99,17 @@ function Dashboard() {
                   </Link>
               </li>
             </ul>
+            <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+              <li>
+                  <Link to='/dashboard/printables' className="flex items-center p-2 transition duration-75 rounded-lg hover:bg-gray-700 text-white group">
+                  <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M5 20h10a1 1 0 0 0 1-1v-5H4v5a1 1 0 0 0 1 1Z"/>
+                    <path d="M18 7H2a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2v-3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Zm-1-2V2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3h14Z"/>
+                  </svg>
+                    <span className="ml-3">Printables</span>
+                  </Link>
+              </li>
+            </ul>
             <div id="dropdown-cta" className="p-4 mt-6 rounded-lg bg-gray-900" role="alert">
               <div className="flex items-center mb-3">
                   <span className="text-sm font-semibold mr-2 px-2.5 py-0.5 rounded bg-blue-600 text-white">Tips</span>
