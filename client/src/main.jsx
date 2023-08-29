@@ -23,6 +23,7 @@ import MakeStatusPage from './pages/DashPages/MakeStatusPage.jsx'
 import AllPostsPage from './pages/DashPages/AllPostsPage.jsx'
 import AchievementsPage from './pages/DashPages/AchievementsPage.jsx'
 import AllUsers from './pages/DashPages/AllUsers.jsx'
+import Printables from './pages/DashPages/Printables.jsx'
 
 const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
           {
             path: '/dashboard/all-users',
             element: <AllUsers />,
+          },
+          {
+            path: '/dashboard/printables',
+            element: <Printables />,
           },
         ],
       },
