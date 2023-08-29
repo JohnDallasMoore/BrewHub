@@ -89,9 +89,21 @@ const resolvers = {
                 );
             },  
         removeUser: async (parent, { UserId }) => {
-                return User.findOneAndDelete({ _id: UserId });
+                return User.findOneAndDelete(
+                    { _id: UserId }
+                    );
             },
         //TODO: REMOVE COMMENTS AND POST 
+        removeComment: async (parent, {  commentId }) => {
+            return Comment.findOneAndDelete(
+              { _id: commentId },
+            );
+          },
+        removeReview: async (parent, {  ReviewId }) => {
+            return Review.findOneAndDelete(
+              { _id: ReviewId },
+            );
+          },
         },
     };
 
