@@ -79,6 +79,9 @@ type Mutation {
         content: String!,): Comment
 
     removeUser(UserId: ID!): User
+    removeComment( commentId: ID!): Comment
+    removeReview( ReviewId: ID!): Review
+
 
 
 
