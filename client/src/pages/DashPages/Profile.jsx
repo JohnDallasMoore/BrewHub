@@ -40,22 +40,20 @@ function Profile() {
               </div>
           </div>
       </section>
-      <section className="lg:my-4 lg:mx-12  rounded-xl bg-gray-800">
-        <div className="flex flex-wrap justify-around ">
-          <div className="border-4 rounded-md bg-gray-700 border-gray-900 mx-4 my-8">
+      <section className="lg:my-4 lg:mx-12  rounded-xl bg-gray-800 flex flex-wrap justify-around">
+          <div className="mx-4 my-8">
             <h2 className="m-4 text-4xl text-center lg:text-6xl tracking-tight font-extrabold text-white">Your Reviews</h2>
             <Review />
             <Review />
             <Review />
           </div>
           <hr />
-          <div className="border-4 rounded-md bg-gray-700 border-gray-900 mx-4 my-8">
+          <div className="mx-4 my-8">
             <h2 className="m-4 text-4xl text-center lg:text-6xl tracking-tight font-extrabold text-white">Your Statuses</h2>
             <Status />
             <Status />
             <Status />
           </div>
-        </div>
       </section>
       
     </div>
