@@ -29,7 +29,7 @@ function LargeStatus() {
                               </div>
                           </div>
                           <div>
-                            <a href="#" class="text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md bg-gray-700 text-blue-400 mb-2">Status</a>
+                            <a href="#" className="text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md bg-gray-700 text-blue-400 mb-2">Status</a>
                           </div>
                       </address>
                       

@@ -11,35 +11,35 @@ function Printables() {
             </div>
             </div>
         </section>
-        <div class="grid grid-cols-2 gap-2 my-2 lg:my-4 lg:mx-12  rounded-xl ">
+        <div className="grid grid-cols-2 gap-2 my-2 lg:my-4 lg:mx-12  rounded-xl ">
             <div>
                 <a href="/printable-1.pdf" download>
-                    <img class="h-auto max-w-full rounded-lg" src="/printable-1.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/printable-1.jpg" alt="" />
                 </a>
             </div>
             <div>
                 <a href="/printable-2.pdf" download>
-                    <img class="h-auto max-w-full rounded-lg" src="/printable-2.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/printable-2.jpg" alt="" />
                 </a>
             </div>
             <div>
                 <a href="/printable-3.pdf" download>
-                    <img class="h-auto max-w-full rounded-lg" src="/printable-3.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/printable-3.jpg" alt="" />
                 </a>
             </div>
             <div>
                 <a href="/printable-4.pdf" download>
-                    <img class="h-auto max-w-full rounded-lg" src="/printable-4.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/printable-4.jpg" alt="" />
                 </a>
             </div>
             <div>
                 <a href="/printable-5.pdf" download>
-                    <img class="h-auto max-w-full rounded-lg" src="/printable-5.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/printable-5.jpg" alt="" />
                 </a>
             </div>
             <div>
                 <a href="/printable-6.pdf" download>
-                    <img class="h-auto max-w-full rounded-lg" src="/printable-6.jpg" alt="" />
+                    <img className="h-auto max-w-full rounded-lg" src="/printable-6.jpg" alt="" />
                 </a>
             </div>
         </div>
