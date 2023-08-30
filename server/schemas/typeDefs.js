@@ -33,6 +33,11 @@ type Comment {
     content: String!
 }
 
+type Auth {
+    token: ID!
+    user: User
+  }
+
 type Query {
     users: [User]
     statuses: [Status]
@@ -45,10 +50,13 @@ type Query {
 }
 
 type Mutation {
+    login(email: String!, password: String!): Auth
+
+    
     addUser(firstName: String!,
         lastName: String!,
         password: String!,
-        email: String!): User
+        email: String!): Auth
 
     addStatus(content: String!, 
         image: String!,
