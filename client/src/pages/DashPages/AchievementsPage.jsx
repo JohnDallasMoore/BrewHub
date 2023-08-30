@@ -12,7 +12,7 @@ function AchievementsPage() {
         </div>
       </section>
 
-      <section className="lg:my-4 lg:mx-12  rounded-xl bg-gray-800">
+      <section className="lg:my-4 lg:mx-12  rounded-xl bg-gray-900">
         <div className="flex flex-wrap justify-around ">
           <Badges />
           <Badges />

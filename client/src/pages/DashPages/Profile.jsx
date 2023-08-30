@@ -40,7 +40,7 @@ function Profile() {
               </div>
           </div>
       </section>
-      <section className="lg:my-4 lg:mx-12  rounded-xl bg-gray-800 flex flex-wrap justify-around">
+      <section className="lg:my-4 lg:mx-12  rounded-xl bg-gray-900 flex flex-wrap justify-around">
           <div className="my-8">
             <h2 className="m-4 text-4xl text-center lg:text-6xl tracking-tight font-extrabold text-white">Your Reviews</h2>
             <Review />
