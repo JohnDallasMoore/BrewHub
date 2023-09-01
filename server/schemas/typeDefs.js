@@ -33,6 +33,7 @@ type Status {
 }
 
 type File {
+    userId: ID! 
     fileName: String!
     dataStream: String! 
 }

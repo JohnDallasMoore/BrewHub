@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-
+import AuthService from '../utils/auth';
 
 function MakeReview() {
   const [beerName, setBeerName] = useState('')
@@ -61,10 +61,12 @@ function MakeReview() {
     event.preventDefault()
     const file = droppedFileName;
     const reader = new FileReader();
+    const user = AuthService.getProfile();
     reader.onload = async function (event){
       const result = event.target.result; 
       const dataString = JSON.stringify(result);
       const imageData = {
+        userId: user._id,
         fileName: file.name,
         dataStream: dataString
       }
