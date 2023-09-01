@@ -28,6 +28,11 @@ type Status {
     comments: [Comment]
 }
 
+type File {
+    fileName: String!
+    dataStream: String! 
+}
+
 type Comment {
     _id: ID! 
     content: String!
@@ -85,12 +90,6 @@ type Mutation {
     updateComment(
         id: ID!,
         content: String!,): Comment
-
-    removeUser(UserId: ID!): User
-    removeComment( commentId: ID!): Comment
-    removeReview( ReviewId: ID!): Review
-
-
 
 
 }

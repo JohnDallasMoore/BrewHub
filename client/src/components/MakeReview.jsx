@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 
+
 function MakeReview() {
   const [beerName, setBeerName] = useState('')
   const [beerReview, setBeerReview] = useState('')
@@ -45,7 +46,7 @@ function MakeReview() {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setDroppedFileName(file.name);
+      setDroppedFileName(file);
     }
   };
   
@@ -55,6 +56,19 @@ function MakeReview() {
   
   const handleSubmit = (event) => {
     event.preventDefault()
+    const file = droppedFileName;
+    const reader = new FileReader();
+    reader.onload = function(event){
+      const imageData = event.target.result; 
+      const dataString = JSON.stringify(imageData);
+      const imageObject = {
+        fileName: file.name,
+        dataStream: dataString
+      }
+    };
+
+    reader.readAsDataURL(file); 
+    //pass the file into backend mutation. 
   }
 
   return (

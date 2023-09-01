@@ -4,6 +4,13 @@ const { User, Review, Status, Comment } = require("../models");
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 
+const imageHandler = require('./imageHandler');
+
+const {
+    S3_REGION,
+    S3_BUCKET_NAME
+} = process.env;
+
 const resolvers = {
     Query: {
         users: async () => {
@@ -107,6 +114,12 @@ const resolvers = {
                 // Return the newly updated object instead of the original
                 { new: true }
             );
+         }, 
+        
+        uploadImage: async (parent, filePath) => {
+            const bucketHandler = new imageHandler(S3_BUCKET_NAME, S3_REGION);
+            return await bucketHandler.uploadImage(filePath);
+            }
         },
         removeUser: async (parent, { UserId }) => {
             return User.findOneAndDelete(
@@ -128,3 +141,16 @@ const resolvers = {
 };
 
 module.exports = resolvers; 
+
+//uploadImage (userID, fileBlob--array of bytes)
+/**
+ * Transform from the client to something that's easy and secure to send to the server 
+ * 
+ * File needs to get read on the client side, because that's when we have access to the fs 
+ */
+
+//downloadImage ()
+
+//keep the s3 operations and the db operations separate
+
+//review model has a field for 'uploads' -- a list of keys referenced to retrieve 
