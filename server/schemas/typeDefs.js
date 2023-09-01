@@ -20,6 +20,10 @@ type Review {
 
 }
 
+type UploadResponse {
+    status: String! 
+}
+
 type Status {
     _id: ID! 
     content: String! 
@@ -29,6 +33,7 @@ type Status {
 }
 
 type File {
+    userId: ID! 
     fileName: String!
     dataStream: String! 
 }
@@ -90,6 +95,9 @@ type Mutation {
     updateComment(
         id: ID!,
         content: String!,): Comment
+
+    uploadImage(
+        imageData: File): UploadResponse
 
 
 }

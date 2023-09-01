@@ -116,9 +116,16 @@ const resolvers = {
             );
          }, 
         
-        uploadImage: async (parent, filePath) => {
+        uploadImage: async (parent, {imageData}) => {
             const bucketHandler = new imageHandler(S3_BUCKET_NAME, S3_REGION);
-            return await bucketHandler.uploadImage(filePath);
+            const fileName = imageData.fileName; 
+            const dataStream = imageData.dataStream;
+            const userId = imageData.userId; 
+            User.findOneAndUpdate(
+                {_id: userId},
+                {$addToSet: {}}
+            )
+            return await bucketHandler.uploadImage(dataStream, fileName);
             }
         },
         removeUser: async (parent, { UserId }) => {
@@ -126,7 +133,6 @@ const resolvers = {
                 { _id: UserId }
             );
         },
-        //TODO: REMOVE COMMENTS AND POST 
         removeComment: async (parent, { commentId }) => {
             return Comment.findOneAndDelete(
                 { _id: commentId },
@@ -137,8 +143,7 @@ const resolvers = {
                 { _id: ReviewId },
             );
         },
-    },
-};
+    };
 
 module.exports = resolvers; 
 
@@ -154,3 +159,5 @@ module.exports = resolvers;
 //keep the s3 operations and the db operations separate
 
 //review model has a field for 'uploads' -- a list of keys referenced to retrieve 
+
+//refactor -- get rid of the separate mutation for uploading the image, add a variable to the uploadReview mutation that contains the dollar sign image data of type file, and attach that image data when we call that mutation for adding a review 

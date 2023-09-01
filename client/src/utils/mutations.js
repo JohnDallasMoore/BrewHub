@@ -64,6 +64,7 @@ export const ADD_REVIEW = gql`
     $rating: Int!
     $image: String!
     $likes: Int!
+    $imageData: File
   ) {
     addReview(
       title: $title
@@ -71,6 +72,7 @@ export const ADD_REVIEW = gql`
       rating: $rating
       image: $image
       likes: $likes
+      file: $imageData
     ) {
       _id
       title
@@ -78,6 +80,7 @@ export const ADD_REVIEW = gql`
       rating
       image
       likes
+      status
     }
   }
 `;
@@ -94,3 +97,16 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+// export const UPLOAD_IMAGE = gql `
+//   mutation uploadImage(
+//     $imageData: File  
+//   ) {
+//     uploadImage(
+//         file: $imageData
+//     ) {
+//         status
+//     }
+//   }
+
+// `;

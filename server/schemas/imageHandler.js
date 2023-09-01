@@ -37,17 +37,12 @@ const {
       }
     }
   
-    async uploadImage(filePath) {
-      const imageBlob = await readFile(filePath);
-      const compressed = await this.#compressUpload(imageBlob)
-  
-      // Use filename as the key for the object
-      const filename = filePath.split('/')
-      const key = filename[filename.length - 1]
-  
+    async uploadImage(imageData, keyName) {
+        const parsedData = JSON.parse(imageData);
+        console.log(parsedData);
       const command = new PutObjectCommand({
         Bucket: this.bucketName, // required
-        Key: key, // required
+        Key: keyName, // required
         Body: compressed
       })
   

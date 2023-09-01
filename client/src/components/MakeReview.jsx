@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-
+import AuthService from '../utils/auth';
 
 function MakeReview() {
   const [beerName, setBeerName] = useState('')
@@ -7,7 +7,10 @@ function MakeReview() {
   const [beerRating, setBeerRating] = useState('2.5')
   const [isDraggingOver, setIsDraggingOver] = useState(false);
   const [droppedFileName, setDroppedFileName] = useState(null);
+  const [uploadImage, { error }] = useMutation(UPLOAD_IMAGE, {
+    variables: {imageData}
 
+  })
   const fileInputRef = useRef(null); 
 
   const handleBeerNameChange = (event) => {
@@ -58,13 +61,17 @@ function MakeReview() {
     event.preventDefault()
     const file = droppedFileName;
     const reader = new FileReader();
-    reader.onload = function(event){
-      const imageData = event.target.result; 
-      const dataString = JSON.stringify(imageData);
-      const imageObject = {
+    const user = AuthService.getProfile();
+    reader.onload = async function (event){
+      const result = event.target.result; 
+      const dataString = JSON.stringify(result);
+      const imageData = {
+        userId: user._id,
         fileName: file.name,
         dataStream: dataString
       }
+
+      const response = await uploadImage(imageData);
     };
 
     reader.readAsDataURL(file); 
