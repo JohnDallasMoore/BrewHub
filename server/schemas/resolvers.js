@@ -116,9 +116,11 @@ const resolvers = {
             );
          }, 
         
-        uploadImage: async (parent, filePath) => {
+        uploadImage: async (parent, {imageData}) => {
             const bucketHandler = new imageHandler(S3_BUCKET_NAME, S3_REGION);
-            return await bucketHandler.uploadImage(filePath);
+            const fileName = imageData.fileName; 
+            const dataStream = imageData.dataStream;
+            return await bucketHandler.uploadImage(dataStream, fileName);
             }
         },
         removeUser: async (parent, { UserId }) => {
@@ -126,7 +128,6 @@ const resolvers = {
                 { _id: UserId }
             );
         },
-        //TODO: REMOVE COMMENTS AND POST 
         removeComment: async (parent, { commentId }) => {
             return Comment.findOneAndDelete(
                 { _id: commentId },
@@ -137,8 +138,7 @@ const resolvers = {
                 { _id: ReviewId },
             );
         },
-    },
-};
+    };
 
 module.exports = resolvers; 
 

@@ -94,3 +94,16 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const UPLOAD_IMAGE = gql `
+  mutation uploadImage(
+    $imageData: File  
+  ) {
+    uploadImage(
+        file: $imageData
+    ) {
+        status
+    }
+  }
+
+`;
