@@ -1,8 +1,15 @@
 import React from 'react'
 import LargeReview from '../../components/LargeReview'
 import LargeStatus from '../../components/LargeStatus'
+import { GET_REVIEWS } from '../../utils/queries'
+import { GET_STATUSES } from '../../utils/queries'
+import { useQuery } from '@apollo/client'
 
 function AllPostsPage() {
+  const { loading: loadingReviews, data: dataReviews } = useQuery(GET_REVIEWS)
+  const reviews = dataReviews?.reviews || []
+  const { loading: loadingStatuses, data: dataStatuses } = useQuery(GET_STATUSES)
+  const statuses = dataStatuses?.statuses || []
   return (
     <div>
       <section className="border-4 border-gray-900 my-2 lg:my-4 lg:mx-12  rounded-xl bg-gray-800">
@@ -15,12 +22,21 @@ function AllPostsPage() {
       </section>
       <section className="my-2 lg:my-4 lg:mx-12  rounded-xl bg-gray-700 flex justify-center">
           <div className="rounded-md mx-4 my-8 justify-center">
-            <LargeStatus />
-            <LargeReview />
-            <LargeStatus />
-            <LargeReview />
-            <LargeStatus />
-            <LargeReview />
+            {loadingReviews ? (
+            <div>Loading...</div>
+          ) : ( reviews.map((review) => (
+            <LargeReview
+              review={review}
+            />
+          )))}
+
+            {loadingStatuses ? (
+            <div>Loading...</div>
+          ) : ( statuses.map((status) => (
+            <LargeStatus
+              status={status}
+            />
+          )))}
           </div>
       </section>
     </div>
