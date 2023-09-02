@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react'
+import { useMutation } from '@apollo/client';
+import {ADD_REVIEW} from '../utils/mutations';
 import AuthService from '../utils/auth';
 
 function MakeReview() {
@@ -7,10 +9,7 @@ function MakeReview() {
   const [beerRating, setBeerRating] = useState('2.5')
   const [isDraggingOver, setIsDraggingOver] = useState(false);
   const [droppedFileName, setDroppedFileName] = useState(null);
-  const [uploadImage, { error }] = useMutation(UPLOAD_IMAGE, {
-    variables: {imageData}
-
-  })
+  const [addReview, { error }] = useMutation(ADD_REVIEW)
   const fileInputRef = useRef(null); 
 
   const handleBeerNameChange = (event) => {
@@ -39,7 +38,7 @@ function MakeReview() {
     setIsDraggingOver(false);
     
     const file = event.dataTransfer.files[0];
-    setDroppedFileName(file.name); // Store the dropped file name
+    setDroppedFileName(file); // Store the dropped file name
   };
   
   const handleFileClick = () => {
@@ -47,6 +46,8 @@ function MakeReview() {
   };
   
   const handleFileChange = (event) => {
+    event.preventDefault();
+    console.log("handle file change --> " +event);
     const file = event.target.files[0];
     if (file) {
       setDroppedFileName(file);
@@ -61,17 +62,20 @@ function MakeReview() {
     event.preventDefault()
     const file = droppedFileName;
     const reader = new FileReader();
-    const user = AuthService.getProfile();
+    // const user = AuthService.getProfile();
     reader.onload = async function (event){
       const result = event.target.result; 
-      const dataString = JSON.stringify(result);
-      const imageData = {
-        userId: user._id,
-        fileName: file.name,
-        dataStream: dataString
-      }
+      console.log("RESULT: " +result);
+      // const dataString = JSON.stringify(result);
+      const userId = String(Math.random());
+      const fileName = file.name; 
 
-      const response = await uploadImage(imageData);
+
+      const response = await addReview({
+        variables: {title: beerName, content: beerReview, rating: beerRating, userId, fileName, imageData: result}
+      });
+
+      console.log(response);
     };
 
     reader.readAsDataURL(file); 
@@ -138,7 +142,7 @@ function MakeReview() {
                   >
                     {droppedFileName ? (
                       <div className="flex items-center border border-2 border-gray-800 rounded-lg m-2">
-                        <p className="text-white m-auto p-2">{droppedFileName}</p>
+                        <p className="text-white m-auto p-2">{droppedFileName?.name}</p>
                         <button
                           type="button"
                           className="text-red-500"

@@ -14,15 +14,12 @@ type Review {
     title: String! 
     content: String! 
     rating: Int! 
-    image: String! 
+    uploadResponse: Upload 
     likes: Int! 
     comments: [Comment]
 
 }
 
-type UploadResponse {
-    status: String! 
-}
 
 type Status {
     _id: ID! 
@@ -32,10 +29,12 @@ type Status {
     comments: [Comment]
 }
 
+scalar Upload
+
 type File {
     userId: ID! 
     fileName: String!
-    dataStream: String! 
+    dataStream: Upload 
 }
 
 type Comment {
@@ -75,7 +74,7 @@ type Mutation {
     addReview(title: String!,
         content: String!,
         rating: Int!, 
-        image: String!,
+        imageData: Upload,
         likes: Int!): Review
 
     addComment(content: String!): Comment
@@ -95,11 +94,6 @@ type Mutation {
     updateComment(
         id: ID!,
         content: String!,): Comment
-
-    uploadImage(
-        imageData: File): UploadResponse
-
-
 }
 
 `;

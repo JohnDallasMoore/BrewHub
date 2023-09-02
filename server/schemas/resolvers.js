@@ -4,6 +4,7 @@ const { User, Review, Status, Comment } = require("../models");
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 
+
 const imageHandler = require('./imageHandler');
 
 const {
@@ -12,6 +13,7 @@ const {
 } = process.env;
 
 const resolvers = {
+
     Query: {
         users: async () => {
             return await User.find({});
@@ -77,8 +79,17 @@ const resolvers = {
         },
 
         addReview: async (parent, {
-            title, content, rating, image, likes }) => {
-            return await Review.create({ title, content, rating, image, likes });
+            title, content, rating, file, userId, fileName }) => {
+            const { stream, filename, mimetype, encoding } = await file;
+            console.log(stream);
+            // const imageKey = userId + fileName;
+            // const likes = 0;
+            // await Review.create({ title, content, rating, images: [imageKey], likes});
+            // const bucketHandler = new imageHandler(S3_BUCKET_NAME, S3_REGION);
+
+            // await bucketHandler.uploadImage(file, imageKey);
+
+            // return { title, content, rating, likes, uploadResponse: file }
         },
         addComment: async (parent, {
             content }) => {
@@ -114,44 +125,33 @@ const resolvers = {
                 // Return the newly updated object instead of the original
                 { new: true }
             );
-         }, 
-        
-        uploadImage: async (parent, {imageData}) => {
-            const bucketHandler = new imageHandler(S3_BUCKET_NAME, S3_REGION);
-            const fileName = imageData.fileName; 
-            const dataStream = imageData.dataStream;
-            const userId = imageData.userId; 
-            User.findOneAndUpdate(
-                {_id: userId},
-                {$addToSet: {}}
-            )
-            return await bucketHandler.uploadImage(dataStream, fileName);
-            }
-        },
-        removeUser: async (parent, { UserId }) => {
-            return User.findOneAndDelete(
-                { _id: UserId }
-            );
-        },
-        removeComment: async (parent, { commentId }) => {
-            return Comment.findOneAndDelete(
-                { _id: commentId },
-            );
-        },
-        removeReview: async (parent, { ReviewId }) => {
-            return Review.findOneAndDelete(
-                { _id: ReviewId },
-            );
-        },
-    };
+        }
 
-module.exports = resolvers; 
+    },
+    // removeUser: async (_parent, { UserId }) => {
+    //     return User.findOneAndDelete(
+    //         { _id: userId }
+    //     );
+    // },
+    // removeComment: async (parent, { commentId }) => {
+    //     return Comment.findOneAndDelete(
+    //         { _id: commentId },
+    //     );
+    // },
+    // removeReview: async (parent, { ReviewId }) => {
+    //     return Review.findOneAndDelete(
+    //         { _id: ReviewId },
+    //     );
+    // },
+};
+
+module.exports = resolvers;
 
 //uploadImage (userID, fileBlob--array of bytes)
 /**
- * Transform from the client to something that's easy and secure to send to the server 
- * 
- * File needs to get read on the client side, because that's when we have access to the fs 
+ * Transform from the client to something that's easy and secure to send to the server
+ *
+ * File needs to get read on the client side, because that's when we have access to the fs
  */
 
 //downloadImage ()
