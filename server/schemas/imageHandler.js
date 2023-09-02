@@ -6,11 +6,7 @@ const {
   } = require('@aws-sdk/client-s3')
 
   const fs = require('fs')
-  const {
-    readFile
-  } = require('fs/promises')
   
-  const sharp = require('sharp')
 
   class imageHandler {
     constructor(bucket, region) {
@@ -38,12 +34,10 @@ const {
     }
   
     async uploadImage(imageData, keyName) {
-        const parsedData = JSON.parse(imageData);
-        console.log(parsedData);
       const command = new PutObjectCommand({
         Bucket: this.bucketName, // required
         Key: keyName, // required
-        Body: compressed
+        Body: imageData
       })
   
       try {
@@ -99,17 +93,6 @@ const {
         console.error(`ERROR WRITING FILE ::: ${err}`)
         fileStream.close()
       })
-    }
-  
-    // Limit upload size
-    // A production implementation would probably resize based on 
-    // original image dimensions to maintain proportions
-    async #compressUpload(blob) {
-      const compressed = await sharp(blob).resize(450, 300, {
-        fit: 'inside'
-      }).toBuffer();
-  
-      return compressed;
     }
   }
   

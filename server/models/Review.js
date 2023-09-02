@@ -19,11 +19,12 @@ const reviewSchema = new Schema({
     type: Number,
     trim: true,
   },
-  image: {
+  images: [{
     type: String,
-  },
+  }],
   likes: {
     type: Number,
+    allowNull: true
   }
 });
 

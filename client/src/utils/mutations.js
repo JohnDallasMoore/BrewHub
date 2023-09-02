@@ -62,25 +62,24 @@ export const ADD_REVIEW = gql`
     $title: String!
     $content: String!
     $rating: Int!
-    $image: String!
-    $likes: Int!
-    $imageData: File
+    $userId: String
+    $fileName: String
+    $imageData: Upload
   ) {
     addReview(
       title: $title
       content: $content
       rating: $rating
-      image: $image
-      likes: $likes
       file: $imageData
+      userId: $userId 
+      fileName: $fileName
     ) {
       _id
       title
       content
-      rating
-      image
       likes
-      status
+      rating
+      uploadResponse
     }
   }
 `;
