@@ -1,7 +1,13 @@
 import React from 'react'
 import LargeReview from '../../components/LargeReview'
+import { GET_REVIEWS, GET_USER_BY_ID } from '../../utils/queries'
+import { useQuery } from '@apollo/client'
 
 function ReviewPage() {
+  const { loading, data } = useQuery(GET_REVIEWS)
+  const {data: userData} = useQuery(GET_USER_BY_ID)
+  const user = userData?.user || []
+  const reviews = data?.reviews || []
   return (
     <div>
       <section className="border-4 border-gray-900 my-2 lg:my-4 lg:mx-12  rounded-xl bg-gray-800">
@@ -14,9 +20,14 @@ function ReviewPage() {
       </section>
       <section className="my-2 lg:my-4 lg:mx-12  rounded-xl bg-gray-700 flex justify-center">
           <div className="rounded-md mx-4 my-8 justify-center">
-            <LargeReview />
-            <LargeReview />
-            <LargeReview />
+            {loading ? (
+            <div>Loading...</div>
+          ) : ( reviews.map((review) => (
+            <LargeReview 
+              review={review}
+              user={user}
+            />
+          )))}
           </div>
       </section>
     </div>

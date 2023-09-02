@@ -1,6 +1,45 @@
 import React from 'react'
+import { useMutation } from '@apollo/client'
+import { LOGIN } from '../utils/mutations'
+
+import Auth from '../utils/auth'
 
 function Login() {
+  const [formState, setFormState] = React.useState({ email: '', password: '' })
+  const [login, { error }] = useMutation(LOGIN)
+
+  const handleChange = (event) => {
+    const { name, value } = event.target
+    setFormState({
+      ...formState,
+      [name]: value,
+    })
+  }
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      const mutationResponse = await login({
+        variables: {
+          email: formState.email,
+          password: formState.password,
+        },
+      })
+      const token = mutationResponse.data.login.token
+      Auth.login(token)
+    } catch (e) {
+      console.log(e)
+    }
+
+    setFormState({
+      email: '',
+      password: '',
+    })
+  }
+
+
+
+
   return (
     <div>
       <section className="bg-gray-800 h-screen">
@@ -11,14 +50,14 @@ function Login() {
                     <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl text-white">
                         Sign in to your account
                     </h1>
-                    <form className="login-form space-y-4 md:space-y-6" action="#">
+                    <form className="login-form space-y-4 md:space-y-6" onSubmit={handleFormSubmit}>
                         <div>
                             <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Your email</label>
-                            <input type="email" name="email" id="email-login" className=" border  sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="name@brewhub.com" required="" />
+                            <input value={formState.email} onChange={handleChange} type="email" name="email" id="email-login" className=" border  sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="name@brewhub.com" required="" />
                         </div>
                         <div>
                             <label htmlFor="password" className="block mb-2 text-sm font-medium text-white">Password</label>
-                            <input type="password" name="password" id="password-login" placeholder="••••••••" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required="" />
+                            <input value={formState.password} onChange={handleChange} type="password" name="password" id="password-login" placeholder="••••••••" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required="" />
                         </div>
                         <div className="flex items-center justify-between">
                             <div className="flex items-start">
