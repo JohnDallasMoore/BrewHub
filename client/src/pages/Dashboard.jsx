@@ -1,5 +1,7 @@
 import React from 'react'
-import { Outlet, Link } from 'react-router-dom'
+import { Outlet, Link, useParams } from 'react-router-dom'
+import { GET_USER_BY_ID } from '../utils/queries'
+import { useQuery } from '@apollo/client'
 
 
 function Dashboard() {

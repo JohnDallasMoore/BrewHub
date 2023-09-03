@@ -47,11 +47,11 @@ function Signup() {
                     <form className="signup-form space-y-4 md:space-y-6" onSubmit={handleFormSubmit}>
                         <div>
                             <label htmlFor="First-name" className="block mb-2 text-sm font-medium text-white">First Name</label>
-                            <input value={formState.firstName} onChange={handleChange} type="name" name="name" id="first-name-signup" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="John" required="" />
+                            <input value={formState.firstName} onChange={handleChange} type="text" name="firstName" id="first-name-signup" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="John" required="" />
                         </div>
                         <div>
                             <label htmlFor="Last-name" className="block mb-2 text-sm font-medium text-white">Last name</label>
-                            <input value={formState.lastName} onChange={handleChange} type="name" name="name" id="last-name-signup" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Smith" required="" />
+                            <input value={formState.lastName} onChange={handleChange} type="text" name="lastName" id="last-name-signup" className="border sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Smith" required="" />
                         </div>
                         <div>
                             <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Your email</label>
