@@ -2,7 +2,7 @@ import React from 'react'
 import Comments from './Comments'
 import MakeComment from './MakeComment'
 
-function LargeReview({ review, user }) {
+function LargeReview({ review }) {
   function commentButton(event) {
     event.preventDefault();
 
@@ -24,7 +24,7 @@ function LargeReview({ review, user }) {
                         <address className="flex items-center justify-between mb-6 not-italic">
                           <div className="flex flex-col mr-3 text-sm text-white">
                               <div>
-                                  <a href="#" rel="author" className="text-xl font-bold text-white">{user.name}</a>
+                                  <a href="#" rel="author" className="text-xl font-bold text-white">Dallas Moore</a>
                                   <p className="text-base text-sm font-light text-gray-400">August 26, 2023</p>
                               </div>
                           </div>

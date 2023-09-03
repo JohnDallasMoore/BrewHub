@@ -1,12 +1,12 @@
 import React from 'react'
 import LargeReview from '../../components/LargeReview'
-import { GET_REVIEWS, GET_USER_BY_ID } from '../../utils/queries'
+import { GET_REVIEWS } from '../../utils/queries'
 import { useQuery } from '@apollo/client'
 
 function ReviewPage() {
   const { loading, data } = useQuery(GET_REVIEWS)
-  const {data: userData} = useQuery(GET_USER_BY_ID)
-  const user = userData?.user || []
+  // const {data: userData} = useQuery(GET_USER_BY_ID)
+  // const user = userData?.user || []
   const reviews = data?.reviews || []
   return (
     <div>
@@ -25,7 +25,7 @@ function ReviewPage() {
           ) : ( reviews.map((review) => (
             <LargeReview 
               review={review}
-              user={user}
+              key={review._id}
             />
           )))}
           </div>
