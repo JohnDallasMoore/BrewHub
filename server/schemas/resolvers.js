@@ -80,8 +80,8 @@ const resolvers = {
 
         addReview: async (parent, {
             title, content, rating, file, userId, fileName }) => {
-            const { stream, filename, mimetype, encoding } = await file;
-            console.log(stream);
+            // const { stream, filename, mimetype, encoding } = await file;
+            // console.log(stream);
             // const imageKey = userId + fileName;
             // const likes = 0;
             // await Review.create({ title, content, rating, images: [imageKey], likes});
