@@ -8,16 +8,18 @@ const userData = require('./userData.json');
 
 const reviewData = require('./reviewData.json');
 
+const statusData = require('./statusData.json');
+
 db.once('open', async () => {
     await cleanDB("User", "user");
     await cleanDB("Review", "review");
     await cleanDB("Status", "status");
 
-    const users = await User.insertMany(userData);
+    await User.insertMany(userData);
 
-    const statuses = await Status.insertMany(statusData);
+    await Status.insertMany(statusData);
 
-    const reviews = await Review.insertMany(reviewData);
+    await Review.insertMany(reviewData);
 
     console.log('all done!');
     process.exit(0);
