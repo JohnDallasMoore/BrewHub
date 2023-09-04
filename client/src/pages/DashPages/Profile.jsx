@@ -1,22 +1,27 @@
 import React from "react";
 import Review from "../../components/Review";
 import Status from "../../components/Status";
-import { GET_USER_BY_ID } from "../../utils/queries";
-import { GET_STATUSES } from "../../utils/queries";
-import { GET_REVIEWS } from "../../utils/queries";
 import { GET_ME } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
 import AuthService from "../../utils/auth";
 
 function Profile() {
-  const { loading, data } = useQuery(GET_ME);
+  const { loading, data, error } = useQuery(GET_ME);
   const me = data?.me || {};
   
-  const { loading: loading2, data: data2 } = useQuery(GET_STATUSES);
-  const statuses = data2?.statuses || [];
+  if (error) {
+    console.error("Error fetching profile data:", error);
+    return <div>Error loading profile data.</div>;
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   
-  const { loading: loading3, data: data3 } = useQuery(GET_REVIEWS);
-  const reviews = data3?.reviews || [];
+  const filteredStatuses = me.statuses || [];
+  const filteredReviews = me.reviews || [];
+
+  console.log("Profile data:", data);
   
   return (
     <div>
@@ -58,26 +63,42 @@ function Profile() {
       <section className="lg:my-4 lg:mx-12  rounded-xl bg-gray-900 flex flex-wrap justify-around">
           <div className="my-8">
             <h2 className="m-4 text-4xl text-center lg:text-6xl tracking-tight font-extrabold text-white">Your Reviews</h2>
-            {loading3 ? (
-            <div>Loading...</div>
-          ) : ( reviews.map((review) => (
-            <Review 
-              review={review}
-              key={review._id}
-            />
-          )))}
+            {loading ? (
+              <div>Loading...</div>
+            ) : (
+              // Render user's reviews
+              filteredReviews.length > 0 ? (
+                filteredReviews.map((review) => (
+                  <Review 
+                    review={review}
+                    key={review._id}
+                  />
+                ))
+              ) : (
+                // Display a message if there are no reviews
+                <p className="text-white text-center">You haven't posted any reviews yet.</p>
+              )
+            )}
           </div>
           <hr />
           <div className="my-8">
             <h2 className="m-4 text-4xl text-center lg:text-6xl tracking-tight font-extrabold text-white">Your Statuses</h2>
-            {loading2 ? (
-            <div>Loading...</div>
-          ) : ( statuses.map((status) => (
-            <Status
-              status={status}
-              key={status._id}
-            />
-          )))}
+            {loading ? (
+              <div>Loading...</div>
+            ) : (
+              // Render user's statuses
+              filteredStatuses.length > 0 ? (
+                filteredStatuses.map((status) => (
+                  <Status
+                    status={status}
+                    key={status._id}
+                  />
+                ))
+              ) : (
+                // Display a message if there are no statuses
+                <p className="text-white text-center">You haven't posted any statuses yet.</p>
+              )
+            )}
           </div>
       </section>
       

@@ -14,7 +14,22 @@ const statusSchema = new Schema({
   },
   likes: {
     type: Number,
-  }
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment'
+    }
+  ],
 });
 
 //rating and place image

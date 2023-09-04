@@ -1,6 +1,4 @@
-// const { Insert, Model, Names, Here } = require('../models);
-
-const { User, Review, Status, Comment } = require("../models");
+const { User, Review, Status, Comment, Badge } = require("../models");
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
@@ -18,8 +16,34 @@ const resolvers = {
     Query: {
         me: async (_, {}, context) => {
             if (context.user) {
-                const { _id, firstName, lastName, email } =  await User.findOne({ _id: context.user._id });
-                return { _id, firstName, lastName, email }
+                const user = await User.findOne({ _id: context.user._id })
+                    .populate('statuses') // Populate the statuses field
+                    .populate('reviews')  // Populate the reviews field
+                    .populate('comments') // Populate the comments field
+                    .populate('badges');  // Populate the badges field
+
+                // Extract the relevant fields from the user object
+                const {
+                    _id,
+                    firstName,
+                    lastName,
+                    email,
+                    statuses,
+                    reviews,
+                    comments,
+                    badges,
+                } = user;
+
+                return {
+                    _id,
+                    firstName,
+                    lastName,
+                    email,
+                    statuses,
+                    reviews,
+                    comments,
+                    badges,
+                };
             }
             throw new AuthenticationError('You need to be logged in!');
         },
@@ -55,15 +79,74 @@ const resolvers = {
             return await Comment.findById(id);
         }
     },
-
+    User: {
+        statuses: async (user) => {
+          // Fetch and return the statuses associated with the user
+          return await Status.find({  user: user._id  });
+        },
+        reviews: async (user) => {
+          // Fetch and return the reviews associated with the user
+          return await Review.find({  user: user._id  });
+        },
+        comments: async (user) => {
+            return await Comment.find({ user: user._id });
+        },
+        badges: async (user) => {
+            return await Badge.find({ user: user._id });
+        },
+    },
+    Status: {
+        // Define resolvers for status-related fields here if needed
+        user: async (status) => {
+          // Example resolver for fetching the user associated with a status
+          return await User.findById(status.user);
+        },
+        comments: async (status) => {
+          // Define a resolver to fetch comments related to this status
+          return await Comment.find({ status: status._id });
+        },
+    },
+    Review: {
+        // Define resolvers for review-related fields here if needed
+        user: async (review) => {
+          // Example resolver for fetching the user associated with a review
+          return await User.findById(review.user);
+        },
+        comments: async (review) => {
+          // Define a resolver to fetch comments related to this review
+          return await Comment.find({ review: review._id });
+        },
+    },
+    Comment: {
+        // Define resolvers for comment-related fields here if needed
+        user: async (comment) => {
+          // Example resolver for fetching the user associated with a comment
+          return await User.findById(comment.user);
+        },
+        review: async (comment) => {
+          // Define a resolver to fetch the review associated with a comment
+          return await Review.findById(comment.review);
+        },
+        status: async (comment) => {
+          // Define a resolver to fetch the status associated with a comment
+          return await Status.findById(comment.status);
+        },
+    },
+    Badge: {
+        // Define resolvers for badge-related fields here if needed
+        user: async (badge) => {
+          // Example resolver for fetching the user associated with a badge
+          return await User.findById(badge.user);
+        },
+    },
     Mutation: {
-        addUser: async (parent, { firstName, lastName, password, email }) => {
+        addUser: async (_, { firstName, lastName, password, email }) => {
             const user = await User.create({ firstName, lastName, password, email });
             const token = signToken(user)
 
             return { token, user }
         },
-        login: async (parent, { email, password }) => {
+        login: async (_, { email, password }) => {
             const user = await User.findOne({ email });
             console.log(user);
             if (!user) {
@@ -80,18 +163,18 @@ const resolvers = {
             return { token, user };
         },
 
-        addStatus: async (parent, {
-            content, image, likes
+        addStatus: async (_, {
+            content,  likes
         }) => {
-            return await Status.create({ content, image, likes });
+            return await Status.create({ content, likes });
         },
 
-        addReview: async (parent, {
-             title, content, rating }) => {
+        addReview: async (_, {
+             title, content, rating, likes }) => {
             // const { stream, filename, mimetype, encoding } = await file;
             // console.log(stream);
             // const imageKey = userId + fileName;
-            const likes = 0;
+            
             const { _id } = await Review.create({ title, content, rating, likes});
             // const bucketHandler = new imageHandler(S3_BUCKET_NAME, S3_REGION);
 
@@ -99,11 +182,10 @@ const resolvers = {
 
             return { _id, title, content, rating, likes }
         },
-        addComment: async (parent, {
-            content }) => {
+        addComment: async (_, { content }) => {
             return await Comment.create({ content });
         },
-        updateUser: async (parent, { id, firstName, lastName, password, email }) => {
+        updateUser: async (_, { id, firstName, lastName, password, email }) => {
             // Find and update the matching class using the destructured args
             return await User.findOneAndUpdate(
                 { _id: id },
@@ -115,7 +197,7 @@ const resolvers = {
                 { new: true }
             );
         },
-        updateReview: async (parent, { id, title, content }) => {
+        updateReview: async (_, { id, title, content }) => {
             // Find and update the matching class using the destructured args
             return await Review.findOneAndUpdate(
                 { _id: id },
@@ -125,7 +207,7 @@ const resolvers = {
                 { new: true }
             );
         },
-        updateComment: async (parent, { content }) => {
+        updateComment: async (_, { id, content }) => {
             // Find and update the matching class using the destructured args
             return await Comment.findOneAndUpdate(
                 { _id: id },
@@ -133,24 +215,8 @@ const resolvers = {
                 // Return the newly updated object instead of the original
                 { new: true }
             );
-        }
-
+        },
     },
-    // removeUser: async (_parent, { UserId }) => {
-    //     return User.findOneAndDelete(
-    //         { _id: userId }
-    //     );
-    // },
-    // removeComment: async (parent, { commentId }) => {
-    //     return Comment.findOneAndDelete(
-    //         { _id: commentId },
-    //     );
-    // },
-    // removeReview: async (parent, { ReviewId }) => {
-    //     return Review.findOneAndDelete(
-    //         { _id: ReviewId },
-    //     );
-    // },
 };
 
 module.exports = resolvers;

@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react';
 
 const Finder = () => {
+
+  const [searchButtonClicked, setSearchButtonClicked] = useState(false);
+
   const [userLatitude, setUserLatitude] = useState(localStorage.getItem('USER_LAT') || '');
   const [userLongitude, setUserLongitude] = useState(localStorage.getItem('USER_LONG') || '');
   const [defaultSearch, setDefaultSearch] = useState('');
@@ -58,9 +61,10 @@ const Finder = () => {
   const makeCityGoogleMap = (searchQuery) => {
     const googleMapSrc = `https://www.google.com/maps/embed/v1/search?key=AIzaSyCB3lXQUe3SeV0zKPvqYYzjp89i2YaNETA&q=breweries in ${searchQuery}`;
     const iframe = document.createElement('iframe');
-    iframe.setAttribute('width', '100%');
-    iframe.setAttribute('height', '100%');
+    iframe.setAttribute('width', '80%');
+    iframe.setAttribute('height', '80%');
     iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('border-radius', '20px');
     iframe.setAttribute('style', 'border:0');
     iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
     iframe.setAttribute('src', googleMapSrc);
@@ -72,10 +76,11 @@ const Finder = () => {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     processSearch(defaultSearch);
+    setSearchButtonClicked(true);
   }
 
   return (
-    <div>
+    <div className='bg-gray-800'>
       <div
         className="relative overflow-hidden bg-no-repeat bg-cover"
         style={{
@@ -138,15 +143,18 @@ const Finder = () => {
         </div>
       </form>
       </div>
-      <div id="map-view" className="md:h-screen lg:h-screen bg-gray-100 dark:bg-gray-800">
-    
-      <div className="map-cont">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-6">Map View</h2>
-      </div>
-    </div>
-  
-    </div>
+          <div className='bg-gray-800'>
+            {searchButtonClicked && (
+            <div className="m-8 map-cont bg-gray-800">
+              <div className="container mx-auto px-4 bg-gray-800">
+                <h2 className=" bg-gray-800 text-3xl md:text-3xl xl:text-4xl font-bold tracking-tight text-center text-white">Map View</h2>
+              </div>
+            </div>
+            )}
+            <div id="map-view" className="md:h-screen flex justify-center lg:h-screen bg-gray-800">
+            
+            </div>
+          </div>
     </div>
   );
 };

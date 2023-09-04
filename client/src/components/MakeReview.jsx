@@ -7,6 +7,7 @@ function MakeReview() {
   const [beerName, setBeerName] = useState('')
   const [beerReview, setBeerReview] = useState('')
   const [beerRating, setBeerRating] = useState('2.5')
+  const likes = 0
   const [isDraggingOver, setIsDraggingOver] = useState(false);
   const [droppedFileName, setDroppedFileName] = useState(null);
   const [addReview, { error }] = useMutation(ADD_REVIEW)
@@ -58,29 +59,51 @@ function MakeReview() {
     setDroppedFileName(null);
   };
   
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault()
-    const file = droppedFileName;
-    const reader = new FileReader();
+    // const file = droppedFileName;
+    // const reader = new FileReader();
     // const user = AuthService.getProfile();
-    reader.onload = async function (event){
-      const result = event.target.result; 
-      console.log("RESULT: " +result);
-      // const dataString = JSON.stringify(result);
-      const userId = String(Math.random());
-      const fileName = file.name; 
+    // reader.onload = async function (event){
+    //   const result = event.target.result; 
+    //   console.log("RESULT: " +result);
+    //   const dataString = JSON.stringify(result);
+    //   const userId = String(Math.random());
+    //   const fileName = file.name; 
 
 
+    //   const response = await addReview({
+    //     variables: {title: beerName, content: beerReview, rating: beerRating, userId, fileName, imageData: result}
+    //   });
+
+    //   console.log(response);
+    try {
+      // const user = AuthService.getProfile(); 
+  
       const response = await addReview({
-        variables: {title: beerName, content: beerReview, rating: beerRating, userId, fileName, imageData: result}
+        variables: {
+          title: beerName,
+          content: beerReview,
+          rating: beerRating,
+          likes: likes,
+          // userId: user._id, 
+        }
       });
-
+  
       console.log(response);
+  
+      // Optionally, reset the form fields after a successful submission
+      setBeerName('');
+      setBeerReview('');
+      setBeerRating('2.5');
+    } catch (error) {
+      console.error(error);
+    }
     };
 
-    reader.readAsDataURL(file); 
+    // reader.readAsDataURL(file); 
     //pass the file into backend mutation. 
-  }
+  
 
   return (
     <div>

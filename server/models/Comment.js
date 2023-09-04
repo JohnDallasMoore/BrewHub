@@ -6,11 +6,23 @@ const commentSchema = new Schema ({
         type: String,
         required: true,
       },
-      // date: {
-      //   type: Date,
-      //   default: Date.now,
-      //   get: (timestamp) => dateFormat(timestamp),
-      // },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+        get: (timestamp) => dateFormat(timestamp),
+      },
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      },
+      review: {
+        type: Schema.Types.ObjectId,
+        ref: 'Review'
+      },
+      status: {
+        type: Schema.Types.ObjectId,
+        ref: 'Status'
+      },
 });
 
 const Comment = model('Comment', commentSchema);

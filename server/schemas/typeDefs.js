@@ -9,6 +9,8 @@ type User {
     email: String! 
     statuses: [Status]
     reviews: [Review]
+    comments: [Comment]
+    badges: [Badge]
 }
 
 type Review {
@@ -16,19 +18,20 @@ type Review {
     title: String! 
     content: String! 
     rating: Int! 
-    uploadResponse: Upload 
+    image: String 
     likes: Int! 
     comments: [Comment]
-
+    user: User
 }
 
 
 type Status {
     _id: ID! 
     content: String! 
-    image: String!
+    image: String
     likes: Int! 
     comments: [Comment]
+    user: User
 }
 
 scalar Upload
@@ -42,6 +45,17 @@ type File {
 type Comment {
     _id: ID! 
     content: String!
+    user: User
+    review: Review
+    status: Status
+}
+
+type Badge {
+    _id: ID!
+    name: String!
+    image: String
+    content: String!
+    user: User
 }
 
 type Auth {
@@ -71,13 +85,13 @@ type Mutation {
         email: String!): Auth
 
     addStatus(content: String!, 
-        image: String!,
+        image: String,
         likes: Int!): Status
 
     addReview(title: String!,
         content: String!,
         rating: Int!, 
-        imageData: Upload,
+        image: String,
         likes: Int!): Review
 
     addComment(content: String!): Comment
@@ -91,7 +105,7 @@ type Mutation {
 
     updateReview(
         id: ID!,
-        tittle: String!,
+        title: String!,
         content: String!,): Review
 
     updateComment(

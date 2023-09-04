@@ -1,9 +1,13 @@
 import React, { useState, useRef } from 'react';
+import { useMutation } from '@apollo/client';
+import {ADD_STATUS} from '../utils/mutations';
 
 function MakeStatus() {
   const [statusContent, setStatusContent] = useState('');
+  const likes = 0;
   const [isDraggingOver, setIsDraggingOver] = useState(false);
   const [droppedFileName, setDroppedFileName] = useState(null);
+  const [addStatus, { error }] = useMutation(ADD_STATUS);
 
   const fileInputRef = useRef(null);
 
@@ -43,8 +47,20 @@ function MakeStatus() {
     setDroppedFileName(null);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
+
+    try{
+      const response = await addStatus({
+        variables: { 
+          content: statusContent,
+          likes: likes,
+        },
+         });
+      console.log(response);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
