@@ -1,9 +1,9 @@
-const {
-    S3Client,
-    GetObjectCommand,
-    ListObjectsV2Command,
-    PutObjectCommand
-  } = require('@aws-sdk/client-s3')
+// const {
+//     S3Client,
+//     GetObjectCommand,
+//     ListObjectsV2Command,
+//     PutObjectCommand
+//   } = require('@aws-sdk/client-s3')
 
   const fs = require('fs')
   
