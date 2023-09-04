@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet, Link, useParams } from 'react-router-dom'
-import { GET_USER_BY_ID } from '../utils/queries'
+import { GET_ME } from '../utils/queries'
 import { useQuery } from '@apollo/client'
+import AuthService from '../utils/auth'
+import { useNavigate } from 'react-router-dom'
+
 
 
 function Dashboard() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  
+  useEffect(() => {
+    const loggedIn = AuthService.loggedIn()
+    setIsLoggedIn(loggedIn)
+  }, [])
+  
+  
   return (
     <div className='bg-gray-700'>
       
@@ -58,7 +69,50 @@ function Dashboard() {
               </li>
               
             </ul>
+            
+            <AuthLinks isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+            
             <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
+              <li>
+                  <Link to='/dashboard/printables' className="flex items-center p-2 transition duration-75 rounded-lg hover:bg-gray-700 text-white group">
+                    <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="m7.164 3.805-4.475.38L.327 6.546a1.114 1.114 0 0 0 .63 1.89l3.2.375 3.007-5.006ZM11.092 15.9l.472 3.14a1.114 1.114 0 0 0 1.89.63l2.36-2.362.38-4.475-5.102 3.067Zm8.617-14.283A1.613 1.613 0 0 0 18.383.291c-1.913-.33-5.811-.736-7.556 1.01-1.98 1.98-6.172 9.491-7.477 11.869a1.1 1.1 0 0 0 .193 1.316l.986.985.985.986a1.1 1.1 0 0 0 1.316.193c2.378-1.3 9.889-5.5 11.869-7.477 1.746-1.745 1.34-5.643 1.01-7.556Zm-3.873 6.268a2.63 2.63 0 1 1-3.72-3.72 2.63 2.63 0 0 1 3.72 3.72Z"/>
+                    </svg>
+                    <span className="ml-3">Brew Quests</span>
+                    <span className="inline-flex items-center justify-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">New</span>
+                  </Link>
+              </li>
+            </ul>
+            <div id="dropdown-cta" className="p-4 mt-6 rounded-lg bg-gray-900" role="alert">
+              <div className="flex items-center mb-3">
+                  <span className="text-sm font-semibold mr-2 px-2.5 py-0.5 rounded bg-blue-600 text-white">Tips</span>
+              </div>
+              <p className="mb-3 text-sm text-white">
+              Discover new brews by exploring different beer styles and flavors. Expand your palate and share your tasting experiences with the BrewHub community! Cheers!
+              </p>
+              
+            </div>
+        </div>
+      </aside>
+
+      <div className="p-4 sm:ml-64 bg-gray-700">
+        <Outlet />
+        
+      </div>
+
+    </div>
+  )
+}
+function AuthLinks ({ isLoggedIn, setIsLoggedIn }) {
+  const navigate = useNavigate()
+  const handleLogout = () =>{
+    setIsLoggedIn(false)
+    AuthService.logout()
+    navigate('/dashboard')
+  }
+  return (
+    <div>
+      {isLoggedIn ? <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
               <li>
                   <Link to='/dashboard/profile' className="flex items-center p-2 transition duration-75 rounded-lg hover:bg-gray-700 text-white group">
                     <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 17 20">
@@ -93,44 +147,15 @@ function Dashboard() {
                   </Link>
               </li>
               <li>
-                  <Link to='' className="flex items-center p-2 transition duration-75 rounded-lg hover:bg-gray-700 text-white group">
+                  <button onClick={handleLogout} className="flex items-center p-2 transition duration-75 rounded-lg hover:bg-gray-700 text-white group">
                     <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/>
                     </svg>
                     <span className="flex-1 ml-3 whitespace-nowrap">Sign Out</span>
-                  </Link>
+                  </button>
               </li>
-            </ul>
-            <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-              <li>
-                  <Link to='/dashboard/printables' className="flex items-center p-2 transition duration-75 rounded-lg hover:bg-gray-700 text-white group">
-                    <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="m7.164 3.805-4.475.38L.327 6.546a1.114 1.114 0 0 0 .63 1.89l3.2.375 3.007-5.006ZM11.092 15.9l.472 3.14a1.114 1.114 0 0 0 1.89.63l2.36-2.362.38-4.475-5.102 3.067Zm8.617-14.283A1.613 1.613 0 0 0 18.383.291c-1.913-.33-5.811-.736-7.556 1.01-1.98 1.98-6.172 9.491-7.477 11.869a1.1 1.1 0 0 0 .193 1.316l.986.985.985.986a1.1 1.1 0 0 0 1.316.193c2.378-1.3 9.889-5.5 11.869-7.477 1.746-1.745 1.34-5.643 1.01-7.556Zm-3.873 6.268a2.63 2.63 0 1 1-3.72-3.72 2.63 2.63 0 0 1 3.72 3.72Z"/>
-                    </svg>
-                    <span className="ml-3">Brew Quests</span>
-                    <span className="inline-flex items-center justify-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">New</span>
-                  </Link>
-              </li>
-            </ul>
-            <div id="dropdown-cta" className="p-4 mt-6 rounded-lg bg-gray-900" role="alert">
-              <div className="flex items-center mb-3">
-                  <span className="text-sm font-semibold mr-2 px-2.5 py-0.5 rounded bg-blue-600 text-white">Tips</span>
-              </div>
-              <p className="mb-3 text-sm text-white">
-              Discover new brews by exploring different beer styles and flavors. Expand your palate and share your tasting experiences with the BrewHub community! Cheers!
-              </p>
-              
-            </div>
-        </div>
-      </aside>
-
-      <div className="p-4 sm:ml-64 bg-gray-700">
-        <Outlet />
-        
-      </div>
-
+            </ul> : <></>}
     </div>
   )
 }
-
 export default Dashboard

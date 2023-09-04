@@ -1,4 +1,6 @@
 const typeDefs = `
+
+
 type User {
     _id: ID!
     firstName: String!
@@ -10,7 +12,7 @@ type User {
 }
 
 type Review {
-    _id: ID! 
+    _id: ID 
     title: String! 
     content: String! 
     rating: Int! 
@@ -48,6 +50,7 @@ type Auth {
   }
 
 type Query {
+    me: User
     users: [User]
     statuses: [Status]
     reviews: [Review]

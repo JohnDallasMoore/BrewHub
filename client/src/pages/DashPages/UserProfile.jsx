@@ -1,30 +1,16 @@
 import React from "react";
 import Review from "../../components/Review";
 import Status from "../../components/Status";
-import { GET_USER_BY_ID } from "../../utils/queries";
-import { GET_STATUSES } from "../../utils/queries";
-import { GET_REVIEWS } from "../../utils/queries";
-import { GET_ME } from "../../utils/queries";
-import { useQuery } from "@apollo/client";
-import AuthService from "../../utils/auth";
 
 function Profile() {
-  const { loading, data } = useQuery(GET_ME);
-  const me = data?.me || {};
-  
-  const { loading: loading2, data: data2 } = useQuery(GET_STATUSES);
-  const statuses = data2?.statuses || [];
-  
-  const { loading: loading3, data: data3 } = useQuery(GET_REVIEWS);
-  const reviews = data3?.reviews || [];
-  
+
   return (
     <div>
       <section className="my-2 lg:my-4 lg:mx-12  rounded-lg bg-gray-800">
           <div className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
               <img className="w-full rounded-full" src="/dallas-pic.jpg" alt="dashboard image" />
               <div className="mt-4 md:mt-0">
-                  <h2 className="mb-4 text-4xl text-center lg:text-8xl tracking-tight font-extrabold text-white">{me.firstName} {me.lastName}</h2>
+                  <h2 className="mb-4 text-4xl text-center lg:text-8xl tracking-tight font-extrabold text-white">Dallas Moore</h2>
                   <p className="mb-6 font-light md:text-lg text-center text-gray-400">Sipping through life, one brew at a time 🍻 Beer enthusiast on a journey of flavors and stories. Join me in celebrating the art of brewing and the joy of discovering new beers!</p>
                   <div className="flex flex-col items-center">
                     <a href="#" className="inline-flex items-center  text-white bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900">
@@ -58,26 +44,16 @@ function Profile() {
       <section className="lg:my-4 lg:mx-12  rounded-xl bg-gray-900 flex flex-wrap justify-around">
           <div className="my-8">
             <h2 className="m-4 text-4xl text-center lg:text-6xl tracking-tight font-extrabold text-white">Your Reviews</h2>
-            {loading3 ? (
-            <div>Loading...</div>
-          ) : ( reviews.map((review) => (
-            <Review 
-              review={review}
-              key={review._id}
-            />
-          )))}
+            <Review />
+            <Review />
+            <Review />
           </div>
           <hr />
           <div className="my-8">
             <h2 className="m-4 text-4xl text-center lg:text-6xl tracking-tight font-extrabold text-white">Your Statuses</h2>
-            {loading2 ? (
-            <div>Loading...</div>
-          ) : ( statuses.map((status) => (
-            <Status
-              status={status}
-              key={status._id}
-            />
-          )))}
+            <Status />
+            <Status />
+            <Status />
           </div>
       </section>
       
