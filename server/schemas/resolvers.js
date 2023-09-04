@@ -1,7 +1,8 @@
 // const { Insert, Model, Names, Here } = require('../models);
 
 const { User, Review, Status, Comment } = require("../models");
-const { signToken, AuthenticationError } = require('../utils/auth');
+const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require('apollo-server-express');
 
 
 
@@ -15,6 +16,13 @@ const {
 const resolvers = {
 
     Query: {
+        me: async (_, {}, context) => {
+            if (context.user) {
+                const { _id, firstName, lastName, email } =  await User.findOne({ _id: context.user._id });
+                return { _id, firstName, lastName, email }
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
         users: async () => {
             return await User.find({});
         },
@@ -57,15 +65,15 @@ const resolvers = {
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
-
+            console.log(user);
             if (!user) {
-                throw AuthenticationError
+                throw new AuthenticationError('No user found with this email address')
             }
 
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                throw AuthenticationError
+                throw new AuthenticationError('Incorrect password')
             }
 
             const token = signToken(user);
@@ -79,17 +87,17 @@ const resolvers = {
         },
 
         addReview: async (parent, {
-            title, content, rating, file, userId, fileName }) => {
+             title, content, rating }) => {
             // const { stream, filename, mimetype, encoding } = await file;
             // console.log(stream);
             // const imageKey = userId + fileName;
-            // const likes = 0;
-            // await Review.create({ title, content, rating, images: [imageKey], likes});
+            const likes = 0;
+            const { _id } = await Review.create({ title, content, rating, likes});
             // const bucketHandler = new imageHandler(S3_BUCKET_NAME, S3_REGION);
 
             // await bucketHandler.uploadImage(file, imageKey);
 
-            // return { title, content, rating, likes, uploadResponse: file }
+            return { _id, title, content, rating, likes }
         },
         addComment: async (parent, {
             content }) => {
@@ -107,11 +115,11 @@ const resolvers = {
                 { new: true }
             );
         },
-        updateReview: async (parent, { id, tittle, content }) => {
+        updateReview: async (parent, { id, title, content }) => {
             // Find and update the matching class using the destructured args
             return await Review.findOneAndUpdate(
                 { _id: id },
-                { tittle },
+                { title },
                 { content },
                 // Return the newly updated object instead of the original
                 { new: true }

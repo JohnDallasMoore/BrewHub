@@ -2,7 +2,7 @@ import React from 'react'
 import Comments from './Comments'
 import MakeComment from './MakeComment'
 
-function LargeStatus() {
+function LargeStatus({ status }) {
   function commentButton(event) {
     event.preventDefault();
 
@@ -37,10 +37,10 @@ function LargeStatus() {
                   <figure><img className="mx-auto rounded-md object-contain h-96 w-96" src="/Dallas-Status.jpeg" alt="" />
                   </figure>
                   <br />
-                  <p className="text-base font-light text-gray-400">Relaxing at Flight Deck Brewery, sippin' on brews and embracing the good times. Cheers to great beers, awesome vibes, and unforgettable memories!</p>
+                  <p className="text-base font-light text-gray-400">{status.content}</p>
                   <br />
                   <div className="flex items-center">
-                      <a href="#" className="text-sm font-medium underline hover:no-underline text-white">12 Likes</a>
+                      <a href="#" className="text-sm font-medium underline hover:no-underline text-white">{status.likes} Likes</a>
                       <span className="w-1 h-1 mx-1.5 rounded-full bg-gray-400"></span>
                       <button onClick={commentButton} id="comment-button" className="text-sm font-medium underline hover:no-underline text-white comment-buttons">Comments</button>
                   </div>

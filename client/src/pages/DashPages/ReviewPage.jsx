@@ -5,11 +5,8 @@ import { useQuery } from '@apollo/client'
 
 function ReviewPage() {
   const { loading, data } = useQuery(GET_REVIEWS)
-  // const {data: userData} = useQuery(GET_USER_BY_ID)
-  // const user = userData?.user || []
   const reviews = data?.reviews || []
-  console.log(user)
-  console.log(reviews)
+
   return (
     <div>
       <section className="border-4 border-gray-900 my-2 lg:my-4 lg:mx-12  rounded-xl bg-gray-800">
@@ -24,7 +21,9 @@ function ReviewPage() {
           <div className="rounded-md mx-4 my-8 justify-center">
             {loading ? (
             <div>Loading...</div>
-          ) : ( reviews.map((review, user) => (
+
+          ) : ( data.reviews.map((review) => (
+
             <LargeReview 
               review={review}
               key={review._id}

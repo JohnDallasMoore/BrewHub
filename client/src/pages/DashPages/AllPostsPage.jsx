@@ -27,6 +27,7 @@ function AllPostsPage() {
           ) : ( reviews.map((review) => (
             <LargeReview
               review={review}
+              key={review._id}
             />
           )))}
 
@@ -35,6 +36,7 @@ function AllPostsPage() {
           ) : ( statuses.map((status) => (
             <LargeStatus
               status={status}
+              key={status._id}
             />
           )))}
           </div>

@@ -58,30 +58,29 @@ export const ADD_STATUS = gql`
 `;
 
 export const ADD_REVIEW = gql`
-  mutation addReview(
-    $title: String!
-    $content: String!
-    $rating: Int!
-    $userId: String
-    $fileName: String
-    $imageData: Upload
+mutation addReview(
+  $title: String!
+  $content: String!
+  $rating: Int!
+  $likes: Int!
+  $imageData: Upload
+) {
+  addReview(
+    title: $title
+    content: $content
+    rating: $rating
+    likes: $likes
+    imageData: $imageData
   ) {
-    addReview(
-      title: $title
-      content: $content
-      rating: $rating
-      file: $imageData
-      userId: $userId 
-      fileName: $fileName
-    ) {
-      _id
-      title
-      content
-      likes
-      rating
-      uploadResponse
-    }
+    _id
+    title
+    content
+    rating
+    uploadResponse
+    likes
+    
   }
+}
 `;
 
 export const ADD_COMMENT = gql`
