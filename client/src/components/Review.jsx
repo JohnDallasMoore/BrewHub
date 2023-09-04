@@ -16,6 +16,7 @@ function Review({ review }) {
     };    
   return (
     <div>
+      {review ? (  
       <main className="pt-4 pb-8 lg:pt-8 lg:pb-12 max-w-lg">
           <div className="flex justify-between md:px-4 mx-auto max-w-screen-xl ">
               <article className="border-4 rounded-lg p-8 border-gray-900 bg-gray-800 mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
@@ -56,6 +57,9 @@ function Review({ review }) {
               </article>
           </div>
       </main> 
+      ) : (
+        <div className="text-white text-center">You haven't posted a review yet.</div>
+      )}
     </div>
   )
 }

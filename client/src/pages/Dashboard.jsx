@@ -109,6 +109,7 @@ function AuthLinks ({ isLoggedIn, setIsLoggedIn }) {
     setIsLoggedIn(false)
     AuthService.logout()
     navigate('/dashboard')
+    window.location.reload()
   }
   return (
     <div>

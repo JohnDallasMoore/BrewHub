@@ -19,13 +19,28 @@ const reviewSchema = new Schema({
     type: Number,
     trim: true,
   },
-  images: [{
+  image: {
     type: String,
-  }],
+  },
   likes: {
     type: Number,
     allowNull: true
-  }
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment'
+    }
+  ],
 });
 
 //rating and place image

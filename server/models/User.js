@@ -24,8 +24,31 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
     unique: true,
-
   },
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Review'
+    }
+  ],
+  statuses: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Status'
+    }
+  ],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment'
+    }
+  ],
+  badges: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Badge'
+    }
+  ],
 });
 
 userSchema.pre('save', async function (next) {

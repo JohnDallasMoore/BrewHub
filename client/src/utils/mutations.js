@@ -41,7 +41,7 @@ export const ADD_USER = gql`
 export const ADD_STATUS = gql`
   mutation addStatus(
     $content: String!
-    $image: String!
+    $image: String
     $likes: Int!
   ) {
     addStatus(
@@ -62,21 +62,21 @@ mutation addReview(
   $title: String!
   $content: String!
   $rating: Int!
+  $image: String
   $likes: Int!
-  $imageData: Upload
 ) {
   addReview(
     title: $title
     content: $content
     rating: $rating
+    image: $image
     likes: $likes
-    imageData: $imageData
   ) {
     _id
     title
     content
     rating
-    uploadResponse
+    image
     likes
     
   }

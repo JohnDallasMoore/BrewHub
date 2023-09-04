@@ -7,6 +7,29 @@ export const GET_ME = gql`
       firstName
       lastName
       email
+      statuses {
+        _id
+        content
+        image
+        likes
+      }
+      reviews {
+        _id
+        title
+        content
+        rating
+        likes
+      }
+      comments {
+        _id
+        content
+      }
+      badges {
+        _id
+        name
+        image
+        content
+      }
     }
   }
 `;
