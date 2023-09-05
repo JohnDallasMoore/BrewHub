@@ -87,6 +87,7 @@ export const GET_REVIEWS = gql`
       rating
       likes
       image
+      userName
     }
   }
 `;

@@ -14,7 +14,7 @@ function LargeReview({ review }) {
     };
 
   };
-  console.log("image path: " + review.image);
+  
   return (
     <div>
       <main className="pt-4 pb-8 lg:pt-8 lg:pb-12">
@@ -24,7 +24,7 @@ function LargeReview({ review }) {
                         <address className="flex items-center justify-between mb-6 not-italic">
                           <div className="flex flex-col mr-3 text-sm text-white">
                               <div>
-                                  <a href="#" rel="author" className="text-xl font-bold text-white">Dallas Moore</a>
+                                  <a href="#" rel="author" className="text-xl font-bold text-white">{review.userName}</a>
                                   <p className="text-base text-sm font-light text-gray-400">August 26, 2023</p>
                               </div>
                           </div>

@@ -20,6 +20,7 @@ type Review {
     rating: Float! 
     image: String 
     likes: Int! 
+    userName: String
     comments: [Comment]
     user: User
 }
