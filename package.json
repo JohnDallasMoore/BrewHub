@@ -1,4 +1,10 @@
 {
+  "name": "brewhub",
+  "description": "a really cool app",
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.20.0"
+  },
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
