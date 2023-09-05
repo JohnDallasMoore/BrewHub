@@ -5,7 +5,7 @@ function UserCard({ user }) {
   return (
     <div className='border-2 border-gray-900 rounded-md p-4 bg-gray-800'>
         <div className="text-center text-gray-400">
-            <img className="mx-auto mb-4 w-36 h-36 rounded-full" src="/dallas-pic.jpg" alt="Bonnie Avatar" />
+            <img className="mx-auto mb-4 w-36 h-36 rounded-full" src={`${user.image}`} alt="Bonnie Avatar" />
             <h3 className="mb-1 text-2xl font-bold tracking-tight text-white">
                 <a href="#">{user.firstName} {user.lastName}</a>
             </h3>

@@ -7,6 +7,7 @@ type User {
     lastName: String!
     password: String!
     email: String! 
+    image: String
     statuses: [Status]
     reviews: [Review]
     comments: [Comment]
