@@ -24,7 +24,7 @@ BrewHub is a comprehensive platform designed for beer enthusiasts to explore bre
 
 No installation is needed to use BrewHub. Simply click the link below to access the deployed application:
 
-[Deploy](#) <!-- Add your deployment link here -->
+[Deploy](https://brewhub-089fbd668392.herokuapp.com/) 
 
 ---
 
