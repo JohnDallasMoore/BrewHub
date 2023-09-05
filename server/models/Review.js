@@ -26,6 +26,9 @@ const reviewSchema = new Schema({
     type: Number,
     allowNull: true
   },
+  userName: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
