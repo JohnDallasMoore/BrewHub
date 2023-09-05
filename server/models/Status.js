@@ -30,6 +30,9 @@ const statusSchema = new Schema({
       ref: 'Comment'
     }
   ],
+  userName: {
+    type: String,
+  },
 });
 
 //rating and place image

@@ -31,6 +31,7 @@ type Status {
     content: String! 
     image: String
     likes: Int! 
+    userName: String
     comments: [Comment]
     user: User
 }

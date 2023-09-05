@@ -24,7 +24,7 @@ function LargeStatus({ status }) {
                       <address className="flex items-center justify-between mb-6 not-italic">
                           <div className="inline-flex mr-3 text-sm text-white">
                               <div>
-                                  <a href="#" rel="author" className="text-xl font-bold text-white">Dallas Moore</a>
+                                  <a href="#" rel="author" className="text-xl font-bold text-white">{status.userName}</a>
                                   <p className="text-base text-sm font-light text-gray-400">August 26, 2023</p>
                               </div>
                           </div>
@@ -34,7 +34,7 @@ function LargeStatus({ status }) {
                       </address>
                       
                   </header>
-                  <figure><img className="mx-auto rounded-md object-contain h-96 w-96" src="/Dallas-Status.jpeg" alt="" />
+                  <figure><img className="mx-auto rounded-md object-contain h-96 w-96" src={`${status.image}`} alt="" />
                   </figure>
                   <br />
                   <p className="text-base font-light text-gray-400">{status.content}</p>
