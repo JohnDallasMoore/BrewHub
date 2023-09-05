@@ -61,7 +61,7 @@ export const ADD_REVIEW = gql`
 mutation addReview(
   $title: String!
   $content: String!
-  $rating: Int!
+  $rating: Float!
   $image: String
   $likes: Int!
 ) {

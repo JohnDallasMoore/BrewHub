@@ -17,7 +17,7 @@ type Review {
     _id: ID 
     title: String! 
     content: String! 
-    rating: Int! 
+    rating: Float! 
     image: String 
     likes: Int! 
     comments: [Comment]
@@ -90,7 +90,7 @@ type Mutation {
 
     addReview(title: String!,
         content: String!,
-        rating: Int!, 
+        rating: Float!, 
         image: String,
         likes: Int!): Review
 
