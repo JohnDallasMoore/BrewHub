@@ -63,6 +63,7 @@ export const GET_STATUSES = gql`
       content
       image
       likes
+      userName
     }
   }
 `;
