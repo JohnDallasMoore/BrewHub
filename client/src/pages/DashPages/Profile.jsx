@@ -4,6 +4,8 @@ import Status from "../../components/Status";
 import { GET_ME } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
 import AuthService from "../../utils/auth";
+import { GET_REVIEWS } from "../../utils/queries";
+import { GET_STATUSES } from "../../utils/queries";
 
 function Profile() {
   const { loading, data, error } = useQuery(GET_ME);
@@ -22,6 +24,11 @@ function Profile() {
   const filteredReviews = me.reviews || [];
 
   console.log("Profile data:", data);
+
+  const { data2 } = useQuery(GET_REVIEWS);
+  const review = data2?.reviews || [];
+  const { data3 } = useQuery(GET_STATUSES);
+  const status = data3?.statuses || [];
   
   return (
     <div>
@@ -76,7 +83,11 @@ function Profile() {
                 ))
               ) : (
                 // Display a message if there are no reviews
-                <p className="text-white text-center">You haven't posted any reviews yet.</p>
+                // <p className="text-white text-center">You haven't posted any reviews yet.</p>
+                <Review 
+                    review={review}
+                    key={review._id}
+                />
               )
             )}
           </div>
@@ -96,7 +107,11 @@ function Profile() {
                 ))
               ) : (
                 // Display a message if there are no statuses
-                <p className="text-white text-center">You haven't posted any statuses yet.</p>
+                // <p className="text-white text-center">You haven't posted any statuses yet.</p>
+                <Status
+                    status={status}
+                    key={status._id}
+                />
               )
             )}
           </div>
