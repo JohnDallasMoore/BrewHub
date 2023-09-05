@@ -25,6 +25,9 @@ const userSchema = new Schema({
     minlength: 5,
     unique: true,
   },
+  image: {
+    type: String,
+  },
   reviews: [
     {
       type: Schema.Types.ObjectId,
