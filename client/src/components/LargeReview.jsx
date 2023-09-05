@@ -36,7 +36,7 @@ function LargeReview({ review }) {
                   </header>
                   <p className="text-base font-light text-gray-400">{review.content}</p>
                   <br />
-                  <figure><img className="mx-auto rounded-md object-contain h-96 w-96" src="{review.image}" alt="" />
+                  <figure><img className="mx-auto rounded-md object-contain h-96 w-96" src={review.image} alt="" />
                   </figure>
                   <br />
                   <div className="flex items-center">
