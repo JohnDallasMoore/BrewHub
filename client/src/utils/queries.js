@@ -86,6 +86,7 @@ export const GET_REVIEWS = gql`
       content
       rating
       likes
+      image
     }
   }
 `;
