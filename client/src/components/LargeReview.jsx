@@ -14,7 +14,7 @@ function LargeReview({ review }) {
     };
 
   };
-
+  console.log("image path: " + review.image);
   return (
     <div>
       <main className="pt-4 pb-8 lg:pt-8 lg:pb-12">
