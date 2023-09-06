@@ -39,6 +39,7 @@ UserContextProvider.propTypes = {
 }
 
 export {
+    // eslint-disable-next-line react-refresh/only-export-components
     useUserContext,
     UserContextProvider
 }
