@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import { Outlet } from 'react-router-dom'
 import NavBar from './components/NavBar'
@@ -13,6 +12,7 @@ import {
 } from '@apollo/client';
 
 import { setContext } from '@apollo/client/link/context';
+import { UserContextProvider } from './context/UserContext'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -40,11 +40,14 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-    <NavBar />
-      <div>
-        <Outlet />
-      </div>
-      <Footer />
+      <UserContextProvider>
+        <NavBar />
+        <div>
+          <Outlet />
+        </div>
+        <Footer />
+      </UserContextProvider>
+
     </ApolloProvider>
   )
 }
