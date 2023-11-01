@@ -72,6 +72,7 @@ function Login() {
                             </div>
                             
                         </div>
+                        {error && <div className="text-red-500">{error.message}</div>}
                         <button type="submit" className="w-full text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-primary-800">Sign in</button>
                         <p className="text-sm font-light text-gray-400">
                             Don’t have an account yet? <a href="/signup" className="font-medium hover:underline text-blue-500">Sign Up</a>
