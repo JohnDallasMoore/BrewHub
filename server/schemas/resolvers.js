@@ -28,6 +28,7 @@ const resolvers = {
                     firstName,
                     lastName,
                     email,
+                    image,
                     statuses,
                     reviews,
                     comments,
@@ -39,6 +40,7 @@ const resolvers = {
                     firstName,
                     lastName,
                     email,
+                    image,
                     statuses,
                     reviews,
                     comments,
@@ -80,6 +82,14 @@ const resolvers = {
         }
     },
     User: {
+        image: (user) => {
+            // If the user does not have a profilePicture, return the default value
+            if (!user.profilePicture) {
+              return "/blankUser.png";
+            }
+            // If the user has a profilePicture, return the user's profilePicture
+            return user.profilePicture;
+        },
         statuses: async (user) => {
           // Fetch and return the statuses associated with the user
           return await Status.find({  user: user._id  });
@@ -140,8 +150,8 @@ const resolvers = {
         },
     },
     Mutation: {
-        addUser: async (_, { firstName, lastName, password, email }) => {
-            const user = await User.create({ firstName, lastName, password, email });
+        addUser: async (_, { firstName, lastName, password, email, image }) => {
+            const user = await User.create({ firstName, lastName, password, email, image });
             const token = signToken(user)
 
             return { token, user }

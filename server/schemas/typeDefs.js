@@ -14,6 +14,7 @@ type User {
     badges: [Badge]
 }
 
+
 type Review {
     _id: ID 
     title: String! 
