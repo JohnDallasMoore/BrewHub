@@ -35,7 +35,7 @@ No installation is needed to use BrewHub. Simply click the link below to access 
 
 2. **Brew Review Dashboard:** Share your beer tasting experiences by posting reviews. Like, comment, and engage with other users' reviews.
 
-3. **[Third Feature Name]:** [Description of the third feature you've added, e.g., BrewInsights, BrewArt Gallery, etc.]
+3. **[Brew Quest]:** [Enhance your drinking experience with fun printable drinking games and challenges.]
 
 ---
 
